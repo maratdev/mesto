@@ -1,0 +1,9 @@
+.elements{
+  outline: 1px solid red;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.elements_margin-vertical{
+  margin-top: 50px;
+}

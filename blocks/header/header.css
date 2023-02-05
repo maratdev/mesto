@@ -1,0 +1,15 @@
+.header{
+  outline: 1px solid red;
+  max-width: 880px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  padding-bottom: 41px;
+}
+.header_margin-vertical{
+  margin-top: 45px;
+}
+
+
+
+
+

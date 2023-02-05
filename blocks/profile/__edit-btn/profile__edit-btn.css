@@ -1,0 +1,13 @@
+.profile__edit-btn{
+  position: relative;
+  max-width: 24px;
+  min-height: 24px;
+}
+
+.profile__edit-btn::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #fff;
+}
