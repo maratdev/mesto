@@ -1,0 +1,14 @@
+.profile{
+  outline: 1px solid red;
+  display: grid;
+  column-gap: 30px;
+  align-items: center;
+  grid-template-columns: min-content 1fr minmax(auto, 150px);
+  max-width: 880px;
+  min-height: 120px;
+  margin: 0 auto;
+
+}
+.profile_margin-vertical{
+  margin-top: 40px;
+}

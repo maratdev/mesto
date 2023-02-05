@@ -1,0 +1,11 @@
+.profile__add-btn{
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+  max-width: 150px;
+  min-height: 50px;
+  border: 2px solid #fff;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+}

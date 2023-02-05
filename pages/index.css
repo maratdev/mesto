@@ -5,3 +5,25 @@
 @import url(../blocks/list/list.css);
 /*------------Стили для всех ссылок*/
 @import url(../blocks/link/link.css);
+
+/*------------------------------------------------BODY*/
+@import url(../blocks/page/page.css);
+@import url(../blocks/main/main.css);
+
+/*------------------------------------------------HEADER*/
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+
+/*------------------------------------------------PROFILE*/
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
+@import url(../blocks/profile/__svg/profile__svg.css);
+@import url(../blocks/profile/__subtitle/profile__subtitle.css);
+@import url(../blocks/profile/__add-btn/profile__add-btn.css);
+
+/*------------------------------------------------ELEMENTS*/
+@import url(../blocks/elements/elements.css);
+
