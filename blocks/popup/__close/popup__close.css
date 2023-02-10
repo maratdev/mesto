@@ -1,0 +1,15 @@
+.popup__close{
+  border: 0;
+  position: absolute;
+  top: -32px;
+  right: -32px;
+  height: 32px;
+  width: 32px;
+  background: 0 0 ,url(../../../img/form_close.svg) no-repeat;
+  cursor: pointer;
+}
+
+.popup__close:hover{
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0.6;
+}

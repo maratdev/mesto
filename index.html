@@ -19,7 +19,7 @@
       <img class="profile__avatar" src="img/avatar.jpg" alt="Аватарка">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <a class="profile__edit-btn link" href="">
+        <a class="profile__edit-btn link">
           <svg class="profile__svg" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 1.32827L2.60377 8.7666L1.28302 7.41936L8.66038 0L10 1.32827ZM0 10L1.96226 9.41177L0.584906 8.08349L0 10Z" fill="white"/>
           </svg>
@@ -73,6 +73,20 @@
       </ul>
     </section>
   </main>
+  <footer class="footer footer_margin-indent">
+    <p class="footer__copyright">© 2023 Mesto Russia</p>
+  </footer>
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close"></button>
+      <b class="popup__title">Редактировать профиль</b>
+      <form class="popup__form">
+        <input class="popup__input-text" type="text" name="user_name" placeholder="Ваше имя" required autofocus maxlength="15">
+        <input class="popup__input-text" type="text" name="user_job" placeholder="О себе" >
+        <input class="popup__input-btn" type="submit" value="Сохранить">
+      </form>
+    </div>
+  </div>
   <script src="js/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+.popup__input-btn{
+  width: 100%;
+  padding: 14px 0 14px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.125rem;
+  margin-top: 48px;
+  cursor: pointer;
+}
