@@ -1,0 +1,12 @@
+.popup__input-text{
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin-bottom: 30px;
+  outline: none;
+  padding-bottom: 13px;
+}
+.popup__input-text:nth-last-of-type(2){
+  margin: 0;
+}

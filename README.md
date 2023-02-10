@@ -40,3 +40,5 @@ git clone https://github.com/yandex-praktikum/mesto
 **_Marat Zakar_**
 - Telegram: [@voredev](https://t.me/voredev)
 - GitHub: [@maratdev](https://github.com/maratdev)
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=maratdev&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
