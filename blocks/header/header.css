@@ -4,9 +4,7 @@
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
   padding-bottom: 41px;
 }
-.header_margin-vertical{
-  margin-top: 45px;
-}
+
 
 @media (max-width: 991px) {
   .header{
@@ -21,10 +19,6 @@
   }
 }
 
-@media (max-width: 425px) {
-  .header_margin-vertical{
-    margin-top: 28px;
-  }
-}
+
 
 

@@ -10,8 +10,11 @@
   justify-content: center;
   justify-items: start;
   cursor: pointer;
+  transition: opacity 0.5s ease;
 }
-
+.profile__add-btn:hover{
+  opacity: 0.6;
+}
 
 @media (max-width: 425px) {
   .profile__add-btn{

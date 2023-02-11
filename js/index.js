@@ -47,6 +47,7 @@ function handleFormSubmit (evt) {
   profileName.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
   popupProfileEdit.classList.remove('popup_opened');
+  document.body.removeAttribute("style");
 }
 
 popupProfileEdit.addEventListener('submit', handleFormSubmit);

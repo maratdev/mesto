@@ -3,9 +3,6 @@
   margin: 0 auto;
 }
 
-.footer_margin-indent{
-  margin: 66px auto 60px;
-}
 @media (max-width: 991px) {
   .footer{
     max-width: calc(100% - 19px * 2);

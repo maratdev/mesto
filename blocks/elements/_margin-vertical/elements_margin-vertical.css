@@ -1,0 +1,9 @@
+.elements_margin-vertical{
+  margin-top: 50px;
+}
+
+@media (max-width: 425px) {
+  .elements_margin-vertical{
+    margin-top: 43px;
+  }
+}

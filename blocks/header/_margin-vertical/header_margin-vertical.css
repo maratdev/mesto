@@ -1,0 +1,9 @@
+.header_margin-vertical{
+  margin-top: 45px;
+}
+
+@media (max-width: 425px) {
+  .header_margin-vertical{
+    margin-top: 28px;
+  }
+}
