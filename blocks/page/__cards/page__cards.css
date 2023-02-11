@@ -1,9 +1,9 @@
-.elements_margin-vertical{
+.page__cards{
   margin-top: 50px;
 }
 
 @media (max-width: 425px) {
-  .elements_margin-vertical{
+  .page__cards{
     margin-top: 34px;
   }
 }
