@@ -1,5 +1,7 @@
 .popup__input-text{
   box-sizing: border-box;
+  font-size: 1.125rem;
+  line-height: normal;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 100%;

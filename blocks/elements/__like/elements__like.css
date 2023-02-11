@@ -6,8 +6,15 @@
   background: 0 0, url(../../../img/heart.svg) no-repeat;
   cursor: pointer;
   flex-basis: 100%;
+  transition: opacity 0.5s ease;
 }
+
+.elements__like:hover{
+  opacity: 0.8;
+}
+
 
 .elements__like:active{
   background: 0 0, url(../../../img/heart-hover.svg) no-repeat;
 }
+

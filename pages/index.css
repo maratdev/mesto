@@ -3,8 +3,6 @@
 @import url(../vendor/fonts/fonts.css);
 /*----------Сбросы для списков ul li */
 @import url(../blocks/list/list.css);
-/*------------Стили для всех ссылок*/
-@import url(../blocks/link/link.css);
 
 /*------------------------------------------------BODY*/
 @import url(../blocks/page/page.css);
@@ -12,6 +10,8 @@
 
 /*------------------------------------------------HEADER*/
 @import url(../blocks/header/header.css);
+/*------------header + header_margin-vertical */
+@import url(../blocks/header/_margin-vertical/header_margin-vertical.css);
 /*------------header --> img */
 @import url(../blocks/header/__logo/header__logo.css);
 
@@ -34,6 +34,8 @@
 
 /*------------------------------------------------ELEMENTS*/
 @import url(../blocks/elements/elements.css);
+/*------------elements + .elements_margin-vertical */
+@import url(../blocks/elements/_margin-vertical/elements_margin-vertical.css);
 /*------------elements --> ul */
 @import url(../blocks/elements/__grids/elements__grids.css);
 /*------------elements --> ul --> li*/
@@ -51,6 +53,9 @@
 
 /*------------------------------------------------FOOTER*/
 @import url(../blocks/footer/footer.css);
+/*------------footer + footer_margin-indent */
+@import url(../blocks/footer/_margin-indent/footer_margin-indent.css);
+/*------------footer --> p */
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 /*------------------------------------------------POPUP*/

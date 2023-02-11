@@ -1,6 +1,7 @@
 .footer__copyright{
   margin: 0;
   font-size: 1.125rem;
+  line-height: normal;
   color: #545454;
 }
 
