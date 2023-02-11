@@ -7,3 +7,10 @@
 .elements_margin-vertical{
   margin-top: 50px;
 }
+
+@media (max-width: 991px) {
+  .elements{
+    max-width: calc(100% - 19px * 2);
+  }
+}
+
