@@ -9,15 +9,16 @@
   align-items: center;
   justify-content: center;
   justify-items: start;
+  cursor: pointer;
 }
 
- /*Landscape phones and portrait tablets*/
+
 @media (max-width: 425px) {
   .profile__add-btn{
     max-width: 100%;
-    width: 100%;
     grid-column-start: 1;
     grid-column-end: -1;
+    margin-top: 17px;
   }
 }
 

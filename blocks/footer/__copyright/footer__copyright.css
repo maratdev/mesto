@@ -3,3 +3,9 @@
   font-size: 1.125rem;
   color: #545454;
 }
+
+@media (max-width: 425px) {
+  .footer__copyright{
+    font-size: 0.875rem;
+  }
+}

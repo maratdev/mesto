@@ -18,7 +18,6 @@
   }
 }
 
-/* Landscape phones and portrait tablets */
 @media (max-width: 650px) {
   .profile{
     grid-template-columns: min-content 1fr minmax(auto, 15%);
@@ -34,11 +33,15 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .profile{
     grid-template-columns: 1fr;
-    grid-auto-columns: 1fr;
-    grid-auto-rows: 1fr;
+    grid-template-rows: 120px 54px 50px;
+    grid-row-gap: 26px;
     justify-items: center;
+  }
+
+  .profile_margin-vertical{
+    margin-top: 42px;
   }
 }

@@ -55,11 +55,19 @@
 
 /*------------------------------------------------POPUP*/
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__close/popup__close.css);
-@import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/__form/popup__form.css);
-@import url(../blocks/popup/__input-text/popup__input-text.css);
-@import url(../blocks/popup/__input-btn/popup__input-btn.css);
+/*------------div.popup + .opened */
 @import url(../blocks/popup/_opened/popup_opened.css);
+/*------------div.popup --> div*/
+@import url(../blocks/popup/__container/popup__container.css);
+/*------------div.popup --> button */
+@import url(../blocks/popup/__close/popup__close.css);
+/*------------div.popup --> p */
+@import url(../blocks/popup/__title/popup__title.css);
+/*------------div.popup --> form */
+@import url(../blocks/popup/__form/popup__form.css);
+/*------------div.popup --> form --> input*/
+@import url(../blocks/popup/__input-text/popup__input-text.css);
+/*------------div.popup --> form --> input.button*/
+@import url(../blocks/popup/__input-btn/popup__input-btn.css);
+
 
