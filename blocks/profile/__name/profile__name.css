@@ -15,10 +15,11 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .profile__name{
     font-size: 1.688rem;
     line-height: normal;
+    text-align: right;
   }
 }
 

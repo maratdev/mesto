@@ -17,6 +17,8 @@
 
 /*------------------------------------------------PROFILE*/
 @import url(../blocks/profile/profile.css);
+/*------------profile + profile_margin-vertical */
+@import url(../blocks/profile/_margin-vertical/profile_margin-vertical.css);
 /*------------profile --> img */
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 /*------------profile --> div.profile__info */

@@ -1,0 +1,10 @@
+.profile_margin-vertical{
+  margin-top: 40px;
+}
+
+@media (max-width: 375px) {
+  .profile_margin-vertical{
+    margin-top: 42px;
+  }
+}
+
