@@ -5,7 +5,7 @@
   right: -32px;
   height: 32px;
   width: 32px;
-  background: 0 0 ,url(../../../img/form_close.svg) no-repeat;
+  background: 0 0 / 32px 32px url(../../../img/form_close.svg) no-repeat;
   cursor: pointer;
 }
 
@@ -13,3 +13,14 @@
   transition: opacity 0.2s ease-in-out;
   opacity: 0.6;
 }
+
+@media (max-width: 425px) {
+  .popup__close{
+    height: 20px;
+    width: 20px;
+    top: -28px;
+    right: 0;
+    background: 0 0 / 20px 20px url(../../../img/form_close.svg) no-repeat;
+  }
+}
+

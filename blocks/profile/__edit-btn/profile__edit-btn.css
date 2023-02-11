@@ -1,4 +1,5 @@
 .profile__edit-btn{
+  box-sizing: border-box;
   position: relative;
   max-width: 24px;
   min-height: 24px;
@@ -11,4 +12,11 @@
   width: 100%;
   height: 100%;
   border: 1px solid #fff;
+}
+
+@media (max-width: 320px) {
+  .profile__edit-btn{
+    max-width: 18px;
+    min-height: 18px;
+  }
 }

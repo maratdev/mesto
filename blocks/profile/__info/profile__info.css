@@ -12,3 +12,13 @@
     grid-template-columns: minmax(100px, max-content) 24px;
   }
 }
+
+
+@media (max-width: 375px) {
+  .profile__info{
+    grid-template-columns: 1fr 18px;
+    grid-auto-columns: 1fr;
+    column-gap: 10px;
+    min-height: 54px;
+  }
+}
