@@ -13,12 +13,11 @@
   }
 }
 
-
 @media (max-width: 375px) {
   .profile__info{
-    grid-template-columns: 1fr 18px;
-    grid-auto-columns: 1fr;
+    margin-top: 26px;
+    grid-template-columns: 235px 36px;
+    align-items: start;
     column-gap: 10px;
-    min-height: 54px;
   }
 }

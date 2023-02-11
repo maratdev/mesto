@@ -6,6 +6,7 @@
   max-width: 150px;
   min-height: 50px;
   border: 2px solid #fff;
+  border-radius: 2px;
   align-items: center;
   justify-content: center;
   justify-items: start;
@@ -19,9 +20,10 @@
 @media (max-width: 425px) {
   .profile__add-btn{
     max-width: 100%;
+    width: 100%;
     grid-column-start: 1;
     grid-column-end: -1;
-    margin-top: 17px;
+    margin-top: 32px;
   }
 }
 

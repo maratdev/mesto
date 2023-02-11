@@ -1,5 +1,6 @@
 .profile__subtitle{
   font-size: 1.125rem;
+  line-height: normal;
   margin: 0;
 }
 
@@ -9,7 +10,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .profile__subtitle{
     font-size: 0.875rem;
     grid-column: 1 / -1;

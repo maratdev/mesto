@@ -4,24 +4,19 @@
   max-width: 24px;
   min-height: 24px;
   cursor: pointer;
+  border: 1px solid #fff;
   transition: opacity 0.5s ease;
 }
 
-.profile__edit-btn::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #fff;
-}
 
 .profile__edit-btn:hover{
   opacity: 0.6;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .profile__edit-btn{
     max-width: 18px;
     min-height: 18px;
+    margin-top: 8px;
   }
 }
