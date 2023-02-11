@@ -1,4 +1,5 @@
 .profile__add-btn{
+  box-sizing: border-box;
   display: flex;
   text-decoration: none;
   color: #fff;
@@ -7,5 +8,4 @@
   border: 2px solid #fff;
   align-items: center;
   justify-content: center;
-  font-size: 1.375rem;
 }
