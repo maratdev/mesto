@@ -2,3 +2,15 @@
   font-size: 1.125rem;
   margin: 0;
 }
+
+@media (max-width: 650px) {
+  .profile__subtitle{
+    font-size: max(0.9em, min(2vw, 1.125rem));
+  }
+}
+
+@media (max-width: 320px) {
+  .profile__subtitle{
+    text-align: center;
+  }
+}

@@ -8,3 +8,10 @@
   overflow: hidden;
 }
 
+/* Landscape phones and portrait tablets */
+@media (max-width: 650px) {
+  .profile__name{
+    font-size: max(1.625rem, min(5vw, 2.625rem));
+  }
+}
+

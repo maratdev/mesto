@@ -8,4 +8,16 @@
   border: 2px solid #fff;
   align-items: center;
   justify-content: center;
+  justify-items: start;
 }
+
+ /*Landscape phones and portrait tablets*/
+@media (max-width: 425px) {
+  .profile__add-btn{
+    max-width: 100%;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+}
+
