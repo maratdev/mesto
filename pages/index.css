@@ -10,16 +10,16 @@
 
 /*------------------------------------------------HEADER*/
 @import url(../blocks/header/header.css);
-/*------------header + header_margin-vertical */
-@import url(../blocks/header/_margin-vertical/header_margin-vertical.css);
-/*------------header --> img */
+/*------------header --> .page__header */
+@import url(../blocks/page/__header/page__header.css);
+/*------------header --> images */
 @import url(../blocks/header/__logo/header__logo.css);
 
 /*------------------------------------------------PROFILE*/
 @import url(../blocks/profile/profile.css);
-/*------------profile + profile_margin-vertical */
-@import url(../blocks/profile/_margin-vertical/profile_margin-vertical.css);
-/*------------profile --> img */
+/*------------profile --> .page__profile */
+@import url(../blocks/page/__profile/page__profile.css);
+/*------------profile --> images */
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 /*------------profile --> div.profile__info */
 @import url(../blocks/profile/__info/profile__info.css);
@@ -27,8 +27,6 @@
 @import url(../blocks/profile/__name/profile__name.css);
 /*------------profile --> div.profile__info --> a */
 @import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
-/*------------profile --> div.profile__info --> a --> svg */
-@import url(../blocks/profile/__svg/profile__svg.css);
 /*------------profile --> div.profile__info --> p */
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 /*------------profile --> a */
@@ -36,13 +34,13 @@
 
 /*------------------------------------------------ELEMENTS*/
 @import url(../blocks/elements/elements.css);
-/*------------elements + .elements_margin-vertical */
-@import url(../blocks/elements/_margin-vertical/elements_margin-vertical.css);
+/*------------elements + .page__cards */
+@import url(../blocks/page/__cards/page__cards.css);
 /*------------elements --> ul */
 @import url(../blocks/elements/__grids/elements__grids.css);
 /*------------elements --> ul --> li*/
-@import url(../blocks/elements/__items/elements__items.css);
-/*------------elements --> ul --> li --> img */
+@import url(../blocks/items/items.css);
+/*------------elements --> ul --> li --> images */
 @import url(../blocks/elements/__item/elements__item.css);
 /*------------elements --> ul --> li --> div */
 @import url(../blocks/elements/__desc/elements__desc.css);
@@ -55,8 +53,8 @@
 
 /*------------------------------------------------FOOTER*/
 @import url(../blocks/footer/footer.css);
-/*------------footer + footer_margin-indent */
-@import url(../blocks/footer/_margin-indent/footer_margin-indent.css);
+/*------------footer + .page__footer */
+@import url(../blocks/page/__footer/page__footer.css);
 /*------------footer --> p */
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
