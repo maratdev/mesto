@@ -12,3 +12,11 @@
 .popup__input-text:nth-last-of-type(2){
   margin: 0;
 }
+
+@media (max-width: 425px) {
+  .popup__input-text{
+    font-size: 0.875rem;
+    padding-bottom: 8px;
+  }
+}
+

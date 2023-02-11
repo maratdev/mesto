@@ -14,3 +14,10 @@
 .popup__input-btn:hover{
   opacity: 0.8;
 }
+
+@media (max-width: 425px) {
+  .popup__input-btn{
+    margin: 45px 0 0;
+    padding: 12px 0 12px;
+  }
+}
