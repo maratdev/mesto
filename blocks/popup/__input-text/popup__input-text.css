@@ -11,9 +11,3 @@
 
 }
 
-@media (max-width: 425px) {
-  .popup__input-text{
-    padding-bottom: 8px;
-  }
-}
-
