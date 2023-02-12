@@ -5,8 +5,8 @@ let profileEdit = document.querySelector('.profile__edit-btn'),
 
     popupProfileEdit = document.querySelector('.popup'),
     closeInput = popupProfileEdit.querySelector('.popup__close'),
-    nameInput = popupProfileEdit.querySelector('.popup__input-text'),
-    jobInput = popupProfileEdit.querySelector('.popup__input-job'),
+    nameInput = popupProfileEdit.querySelector('.popup__input_string_name'),
+    jobInput = popupProfileEdit.querySelector('.popup__input_string_job'),
     form = popupProfileEdit.querySelector('.popup__form');
 
 

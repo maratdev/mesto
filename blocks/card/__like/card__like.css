@@ -1,4 +1,4 @@
-.elements__like{
+.card__like{
   border: 0;
   outline: 0;
   min-height: 19px;
@@ -9,15 +9,15 @@
   transition: opacity 0.5s ease;
 }
 
-.elements__like:hover{
+.card__like:hover{
   opacity: 0.5;
 }
 
-.elements__like:active{
+.card__like:active{
   background: url(../../../images/heart-active.svg) no-repeat;
 }
 
-.elements__like:focus{
+.card__like:focus{
   background: url(../../../images/heart-active.svg) no-repeat;
 }
 
