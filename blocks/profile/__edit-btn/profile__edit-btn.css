@@ -5,7 +5,7 @@
   min-height: 24px;
   cursor: pointer;
   border: 1px solid #fff;
-  background: center url(/images/profile_pencil.svg) no-repeat;
+  background: center url(../../../images/profile_pencil.svg) no-repeat;
   transition: opacity 0.5s ease;
 }
 
