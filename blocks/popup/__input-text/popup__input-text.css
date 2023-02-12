@@ -1,13 +1,14 @@
 .popup__input-text{
   box-sizing: border-box;
-  font-size: 1.125rem;
+  font-size: 0.875rem;
   line-height: normal;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 100%;
   margin-bottom: 30px;
+  padding-bottom: 8px;
   outline: none;
-  padding-bottom: 13px;
+
 }
 .popup__input-text:nth-last-of-type(2){
   margin: 0;
@@ -15,7 +16,6 @@
 
 @media (max-width: 425px) {
   .popup__input-text{
-    font-size: 0.875rem;
     padding-bottom: 8px;
   }
 }
