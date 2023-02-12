@@ -1,4 +1,5 @@
 .profile__name{
+
   font-size: 2.625rem;
   line-height: 3rem;
   font-weight: 500;
@@ -19,7 +20,7 @@
   .profile__name{
     font-size: 1.688rem;
     line-height: normal;
-    text-align: right;
+    text-align: center;
   }
 }
 

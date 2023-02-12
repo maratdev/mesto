@@ -6,6 +6,7 @@
   height: 32px;
   width: 32px;
   background: 0 0 / 32px 32px url(../../../images/form_close.svg) no-repeat;
+  background-size: cover;
   cursor: pointer;
   transition: opacity 0.5s ease;
 }
@@ -20,8 +21,6 @@
     width: 20px;
     top: -36px;
     right: 0;
-    background: url(../../../images/form_close.svg) no-repeat;
-    background-size: cover;
   }
 }
 

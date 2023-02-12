@@ -1,6 +1,6 @@
 .popup__input-btn{
   width: 100%;
-  padding: 14px 0 14px;
+  padding: 14px 0 15px;
   background-color: #000;
   color: #fff;
   font-size: 1.125rem;
@@ -10,15 +10,16 @@
   border: 0;
   cursor: pointer;
   border-radius: 2px;
-  transition: opacity 0.5s ease;
+  transition: all 0.5s ease;
 }
 .popup__input-btn:hover{
-  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 425px) {
   .popup__input-btn{
+    font-size: 0.875rem;
     margin: 45px 0 0;
-    padding: 12px 0 12px;
+    padding: 14px 0 14px;
   }
 }
