@@ -70,8 +70,10 @@
 @import url(../blocks/popup/__title/popup__title.css);
 /*------------div.popup --> form */
 @import url(../blocks/popup/__form/popup__form.css);
-/*------------div.popup --> form --> input*/
+/*------------div.popup --> form --> input.popup__input-text*/
 @import url(../blocks/popup/__input-text/popup__input-text.css);
+/*------------div.popup --> form --> input.popup__input-job*/
+@import url(../blocks/popup/__input-job/popup__input-job.css);
 /*------------div.popup --> form --> input.button*/
 @import url(../blocks/popup/__input-btn/popup__input-btn.css);
 
