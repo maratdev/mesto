@@ -37,6 +37,7 @@
         </li>
         <li class="elements__items">
           <article class="card">
+            <button aria-label="Удалить" class="card__trash" ></button>
             <img class="card__item" src="images/2.jpg" alt="Гора Эльбрус">
             <div class="card__desc">
               <h2 class="card__title">Гора Эльбрус</h2>
@@ -97,6 +98,18 @@
       </form>
     </div>
   </div>
+  <template id="elements__items">
+    <li class="elements__items">
+      <article class="card">
+        <button aria-label="Удалить" class="card__trash" ></button>
+        <img class="card__item" src="images/2.jpg" alt="Гора Эльбрус">
+        <div class="card__desc">
+          <h2 class="card__title">Гора Эльбрус</h2>
+          <button aria-label="Лайк" type="button" class="card__like"></button>
+        </div>
+      </article>
+    </li>
+  </template>
   <script src="scripts/index.js"></script>
 </body>
 </html>
