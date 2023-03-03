@@ -13,11 +13,4 @@
   opacity: 0.5;
 }
 
-.card__like:active{
-  background: url(../../../images/heart-active.svg) no-repeat;
-}
-
-.card__like:focus{
-  background: url(../../../images/heart-active.svg) no-repeat;
-}
 
