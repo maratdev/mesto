@@ -36,6 +36,58 @@ form.addEventListener('submit', handleFormSubmit);
 profileEdit.addEventListener('click', openToClick)
 closeInput.addEventListener('click', closeToClick)
 
+// --------------------------------------------------------------------------------------------ELEMENTS TEMPLATE
+
+
+// //получить содержимое
+// let elementsTemplate = document.querySelector('#elements__items').content.querySelector('.elements__items');
+// // клонируем содержимое тега template
+// let cardsContainer = document.querySelector('.elements__grids');
+
+// //функция генерации карточки
+// let generateCard = (dataCard) => {
+//   let newCard = elementsTemplate.cloneNode(true),
+//       imgLink = newCard.querySelector('.card__item'),
+//       imgName = newCard.querySelector('.card__title')
+//
+//   imgLink.src = dataCard.link
+//   imgName.textContent = dataCard.name
+//
+//   return newCard
+// }
+//
+// //функция отрисовки карточки методом
+// let renderCard = (dataCard) => {
+//   cardsContainer.append(generateCard(dataCard))
+// }
+//
+// initialCards.forEach((dataCard) => {
+//   renderCard(dataCard)
+// })
+
+
+let ulList = document.querySelector('.elements__grids')
+let template = document.querySelector('#elements__items').content
+
+
+initialCards.forEach((item) => {
+  template.querySelector('.card__item').src = item.link;
+  template.querySelector('.card__title').textContent = item.name;
+  let clone = template.cloneNode(true)
+  ulList.append(clone);
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
