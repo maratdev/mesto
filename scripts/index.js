@@ -5,52 +5,68 @@ const handleClickModalOpen = (popupName) => {
   popupName.classList.add('popup_opened');
 }
 
-// Функция закрывания POPUP при клике X
+// Функция закрывания модальных окон при клике X
 const handleClickModalClose = (popupName) =>  {
   popupName.classList.remove('popup_opened');
 }
 
 
 // -------------------------------------------------------------------------------------------- POPUP редактировать профиль
-  let profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
-      profileName = sectionProfile.querySelector('.profile__name'),
-      profileSubtitle = sectionProfile.querySelector('.profile__subtitle'),
+let profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
+    profileName = sectionProfile.querySelector('.profile__name'),
+    profileSubtitle = sectionProfile.querySelector('.profile__subtitle'),
+    // форма popup_edit-user
+    popupProfileEdit = document.querySelector('.popup_edit-user'),
+    closeInput = popupProfileEdit.querySelector('.popup__close'),
+    nameInput = popupProfileEdit.querySelector('.popup__input_string_name'),
+    jobInput = popupProfileEdit.querySelector('.popup__input_string_job'),
+    formEdit = popupProfileEdit.querySelector('.popup__form_edit');
 
-      popupProfileEdit = document.querySelector('.popup_edit-user'),
-      closeInput = popupProfileEdit.querySelector('.popup__close'),
-      nameInput = popupProfileEdit.querySelector('.popup__input_string_name'),
-      jobInput = popupProfileEdit.querySelector('.popup__input_string_job'),
-      formEdit = popupProfileEdit.querySelector('.popup__form_edit');
 
+  function openProfileEdit(popup) {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileSubtitle.textContent;
+    handleClickModalOpen(popup);
+  }
 
-function openProfileEdit(popup) {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileSubtitle.textContent;
-  handleClickModalOpen(popup);
-}
+  //Обработчик «отправки» формы
+  function handleProfileFormSubmit (evt) {
+    evt.preventDefault();
+    profileName.textContent = nameInput.value;
+    profileSubtitle.textContent = jobInput.value;
+    handleClickModalClose(popupProfileEdit);
+  }
 
-//Обработчик «отправки» формы
-function handleFormSubmit (evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
-  handleClickModalClose(popupProfileEdit);
-}
-
-formEdit.addEventListener('submit', handleFormSubmit);
-profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
-closeInput.addEventListener('click', () => handleClickModalClose(popupProfileEdit))
+  formEdit.addEventListener('submit', handleProfileFormSubmit);
+  profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
+  closeInput.addEventListener('click', () => handleClickModalClose(popupProfileEdit))
 
 // -------------------------------------------------------------------------------------------- POPUP добавление новой карточки
+
 let formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
 
-    popupCardEdit = document.querySelector('.popup_add-card'),
-    popupCardClose = popupCardEdit.querySelector('.popup__close')
+  popupCardEdit = document.querySelector('.popup_add-card'),
+  popupCardClose = popupCardEdit.querySelector('.popup__close'),
+  popupCardForm = popupCardEdit.querySelector('.popup__form_add');
+  popupCardInputPlace = popupCardEdit.querySelector('.popup__input_string_place'),
+  popupCardInputSrc = popupCardEdit.querySelector('.popup__input_string_src');
 
-formCardEdit.addEventListener('click', () => handleClickModalOpen(popupCardEdit))
-popupCardClose.addEventListener('click', () => handleClickModalClose(popupCardEdit))
 
+//Обработчик «отправки» формы
+function handleCardFormSubmit (evt) {
+  evt.preventDefault();
+  // клонируем содержимое тега template
+  const userElement = template.querySelector('.elements__items').cloneNode(true);
+  userElement.querySelector('.card__title').textContent = popupCardInputPlace.value;
+  userElement.querySelector('.card__item').src = popupCardInputSrc.value;
+  ulList.prepend(userElement);
+  handleClickModalClose(popupCardEdit);
+}
+// для отладки https://source.unsplash.com/collection/220381/300x400/
 
+  popupCardForm.addEventListener('submit', handleCardFormSubmit);
+  formCardEdit.addEventListener('click', () => handleClickModalOpen(popupCardEdit))
+  popupCardClose.addEventListener('click', () => handleClickModalClose(popupCardEdit))
 
 
 // --------------------------------------------------------------------------------------------ELEMENTS TEMPLATE
@@ -58,15 +74,13 @@ popupCardClose.addEventListener('click', () => handleClickModalClose(popupCardEd
 let ulList = document.querySelector('.elements__grids')
 let template = document.querySelector('#elements__items').content
 
-
-
 function printCards (data) {
   data.forEach((item) => {
     template.querySelector('.card__item').src = item.link;
     template.querySelector('.card__item').alt = item.name;
     template.querySelector('.card__title').textContent = item.name;
     let clone = template.cloneNode(true)
-    ulList.append(clone);
+    ulList.prepend(clone);
   })
 }
 
