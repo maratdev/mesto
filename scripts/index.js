@@ -86,6 +86,16 @@ function printCards (data) {
 
 printCards(initialCards);
 
+// --------------------------------------------------------------------------------------------Карточка ELEMENTS
+
+// Лайки в карточке elements -> card
+let itemCollection = document.querySelectorAll('.card__like');
+itemCollection.forEach(item => item.addEventListener('click', () => {
+    item.classList.toggle('card__like_active');
+  })
+);
+
+// Удалить карточку elements -> card
 
 
 
