@@ -22,7 +22,7 @@ const handleClickModalClose = (popupName) =>  {
       jobInput = popupProfileEdit.querySelector('.popup__input_string_job'),
       formEdit = popupProfileEdit.querySelector('.popup__form_edit');
 
-// Закрывание POPUP при клике X
+
 function openProfileEdit(popup) {
   nameInput.value = profileName.textContent;
   jobInput.value = profileSubtitle.textContent;
@@ -41,8 +41,16 @@ formEdit.addEventListener('submit', handleFormSubmit);
 profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
 closeInput.addEventListener('click', () => handleClickModalClose(popupProfileEdit))
 
-// -------------------------------------------------------------------------------------------- Popup добавление новой карточки
-cardEdit = sectionProfile.querySelector('.profile__add-btn')
+// -------------------------------------------------------------------------------------------- POPUP добавление новой карточки
+let formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
+
+    popupCardEdit = document.querySelector('.popup_add-card'),
+    popupCardClose = popupCardEdit.querySelector('.popup__close')
+
+formCardEdit.addEventListener('click', () => handleClickModalOpen(popupCardEdit))
+popupCardClose.addEventListener('click', () => handleClickModalClose(popupCardEdit))
+
+
 
 
 // --------------------------------------------------------------------------------------------ELEMENTS TEMPLATE
