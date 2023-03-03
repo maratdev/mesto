@@ -40,13 +40,17 @@
 @import url(../blocks/elements/__grids/elements__grids.css);
 /*------------elements --> ul --> li*/
 @import url(../blocks/elements/__items/elements__items.css);
-/*------------elements --> ul --> li --> images */
+/*------------elements --> article*/
+@import url(../blocks/card/card.css);
+/*------------elements --> ul --> li --> article --> images */
 @import url(../blocks/card/__item/card__item.css);
-/*------------elements --> ul --> li --> div */
+/*------------elements --> ul --> li --> article --> images.trash */
+@import url(../blocks/card/__trash/card__trash.css);
+/*------------elements --> ul --> li --> article --> div */
 @import url(../blocks/card/__desc/card__desc.css);
-/*------------elements --> ul --> li --> h3 */
+/*------------elements --> ul --> li --> article --> h3 */
 @import url(../blocks/card/__title/card__title.css);
-/*------------elements --> ul --> li --> button */
+/*------------elements --> ul --> li --> article --> button */
 @import url(../blocks/card/__like/card__like.css);
 
 
