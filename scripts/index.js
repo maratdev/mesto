@@ -12,8 +12,6 @@ const handleClickModalClose = (popupName) =>  {
 }
 
 
-
-
 // -------------------------------------------------------------------------------------------- POPUP редактировать профиль
 let profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
     profileName = sectionProfile.querySelector('.profile__name'),
@@ -101,9 +99,8 @@ function printCards (data) {
     let cardUlListTitle = document.querySelector('.card__title');
     let clone = template.cloneNode(true);
 
-   // console.log(cardUlList);
     console.log(cardUlList);
-   // cardUlListImg.addEventListener('click', handleClickImageModal)
+    cardUlList.addEventListener('click', handleClickImageModal)
     handleClickDeleteCard(clone);
     clickLikeCard(clone);
 
@@ -146,17 +143,17 @@ popupCloseImg.addEventListener('click', (evt) =>{
   popupImg.classList.remove('popup_opened')
 })
 
-const zoomImg = popupImg.querySelector('.popup__zoom-image')
-const zoomTitle = popupImg.querySelector('.popup__zoom-title')
+const popupZoomImg = popupImg.querySelector('.popup__zoom-image')
+const popupZoomTitle = popupImg.querySelector('.popup__zoom-title')
 //функция для открытия модального окна по клику на картинку
 function handleClickImageModal(evt) {
 
-  const imgSrc = evt.target.getAttribute('src')
-  const imgAlt = evt.target.getAttribute('alt')
+  let imgSrc = evt.target.getAttribute('src')
+  let imgAlt = evt.target.getAttribute('alt')
 
-  zoomImg.setAttribute('src', imgSrc)
-  zoomImg.setAttribute('alt', imgAlt)
-  zoomTitle.textContent = imgAlt
+  popupZoomImg.setAttribute('src', imgSrc)
+  popupZoomImg.setAttribute('alt', imgAlt)
+  popupZoomTitle.textContent = imgAlt
 
   handleClickModalOpen(popupImg)
 }
