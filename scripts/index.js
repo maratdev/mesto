@@ -1,5 +1,6 @@
 const sectionProfile = document.querySelector('.profile')
 
+
 // Функция открытия модальных окон
 const handleClickModalOpen = (popupName) => {
   popupName.classList.add('popup_opened');
@@ -9,6 +10,8 @@ const handleClickModalOpen = (popupName) => {
 const handleClickModalClose = (popupName) =>  {
   popupName.classList.remove('popup_opened');
 }
+
+
 
 
 // -------------------------------------------------------------------------------------------- POPUP редактировать профиль
@@ -67,6 +70,8 @@ function handleCardFormSubmit (evt) {
   // Инициализируем селектор для открытия popup
   handleClickModalClose(popupCardEdit);
   // вставляем новый элемент в начало узла
+
+
   cardUlList.prepend(userElement);
   // чистим форму
   evt.target.reset();
@@ -91,8 +96,9 @@ function printCards (data) {
     template.querySelector('.card__title').textContent = item.name;
     let clone = template.cloneNode(true);
 
-    handleClickDeleteCard (clone);
+    handleClickDeleteCard(clone);
     clickLikeCard(clone)
+    openImgZoomCard(clone)
     // вставляем новый элемент в начало узла
     cardUlList.prepend(clone)
 
@@ -121,8 +127,36 @@ function handleClickDeleteCard (node) {
   cardDeleteBtn.addEventListener('click', clickDeleteCard)
 }
 
+// --------------------------------------------------------------------------------------------POPUP CARD
+let popupImg = document.querySelector('.popup_img-card')
+let popupCloseImg = popupImg.querySelector('.popup__close')
+
+const zoomImg = document.querySelector('.popup__zoomCont-image')
+const zoomHeader = document.querySelector('.popup__zoomCont-header')
+const imageBtn = document.querySelector('.popup_type_zoom-image')
 
 
+function openImgZoomCard(element) {
+  let imgCard = element.querySelector('.card__item')
+  imgCard.addEventListener('click', () => handleClickModalOpen(popupImg))
+}
+
+popupCloseImg.addEventListener('click', (evt) =>{
+  popupImg.classList.remove('popup_opened')
+})
+
+//функция для открытия модального окна по клику на картинку
+const handleClickImageModal = (evt) => {
+
+  const imgSrc = evt.target.getAttribute('src')
+  const imgAlt = evt.target.getAttribute('alt')
+
+  zoomImg.setAttribute('src', imgSrc)
+  zoomImg.setAttribute('alt', imgAlt)
+  zoomHeader.textContent = imgAlt
+
+  handleClickModalOpen(imageBtn)
+}
 
 
 
