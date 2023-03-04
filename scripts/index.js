@@ -88,22 +88,32 @@ function handleCardFormSubmit (evt) {
 let template = document.querySelector('#elements__items').content;
 let cardUlList = document.querySelector('.elements__grids');
 
+//cardUlList.removeEventListener('click', handleClickImageModal);
+
 // проходим по массиву для генерации карточки
 function printCards (data) {
   data.forEach((item) => {
     template.querySelector('.card__item').src = item.link;
     template.querySelector('.card__item').alt = item.name;
     template.querySelector('.card__title').textContent = item.name;
+
+    let cardUlListImg = document.querySelector('.card__item');
+    let cardUlListTitle = document.querySelector('.card__title');
     let clone = template.cloneNode(true);
 
+   // console.log(cardUlList);
+    console.log(cardUlList);
+   // cardUlListImg.addEventListener('click', handleClickImageModal)
     handleClickDeleteCard(clone);
-    clickLikeCard(clone)
-    openImgZoomCard(clone)
+    clickLikeCard(clone);
+
+
     // вставляем новый элемент в начало узла
     cardUlList.prepend(clone)
 
   })
 }
+
 printCards(initialCards);
 
 // --------------------------------------------------------------------------------------------Карточка CARD в ELEMENTS
@@ -131,32 +141,26 @@ function handleClickDeleteCard (node) {
 let popupImg = document.querySelector('.popup_img-card')
 let popupCloseImg = popupImg.querySelector('.popup__close')
 
-const zoomImg = document.querySelector('.popup__zoomCont-image')
-const zoomHeader = document.querySelector('.popup__zoomCont-header')
-const imageBtn = document.querySelector('.popup_type_zoom-image')
-
-
-function openImgZoomCard(element) {
-  let imgCard = element.querySelector('.card__item')
-  imgCard.addEventListener('click', () => handleClickModalOpen(popupImg))
-}
 
 popupCloseImg.addEventListener('click', (evt) =>{
   popupImg.classList.remove('popup_opened')
 })
 
+const zoomImg = popupImg.querySelector('.popup__zoom-image')
+const zoomTitle = popupImg.querySelector('.popup__zoom-title')
 //функция для открытия модального окна по клику на картинку
-const handleClickImageModal = (evt) => {
+function handleClickImageModal(evt) {
 
   const imgSrc = evt.target.getAttribute('src')
   const imgAlt = evt.target.getAttribute('alt')
 
   zoomImg.setAttribute('src', imgSrc)
   zoomImg.setAttribute('alt', imgAlt)
-  zoomHeader.textContent = imgAlt
+  zoomTitle.textContent = imgAlt
 
-  handleClickModalOpen(imageBtn)
+  handleClickModalOpen(popupImg)
 }
+
 
 
 
