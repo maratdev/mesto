@@ -94,11 +94,11 @@ function printCards (data) {
     template.querySelector('.card__title').textContent = item.name;
     let clone = template.cloneNode(true);
 
-    // инициализируем popup открытия изображения
-    let cardUlListImg = clone.querySelector('.card__item');
-    cardUlListImg.addEventListener('click', handleClickImageModal)
-
+    // Инициализируем popup открытия изображения
+    cardUlListImg(clone);
+    // Инициализируем селектор для отслеживания клика на удаление
     handleClickDeleteCard(clone);
+    // Инициализируем отслеживания клика на лайк
     clickLikeCard(clone);
 
     // вставляем новый элемент в начало узла
