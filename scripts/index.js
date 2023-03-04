@@ -57,18 +57,21 @@ function handleCardFormSubmit (evt) {
   evt.preventDefault();
   // клонируем содержимое тега template
   let userElement = template.querySelector('.elements__items').cloneNode(true);
-
+  // добавляем из формы
   userElement.querySelector('.card__title').textContent = popupCardInputPlace.value;
   userElement.querySelector('.card__item').src = popupCardInputSrc.value;
-
-  // Выбираем новый селектор для отслеживания клика
-  let likeCard = userElement.querySelector('.card__like');
-  likeCard.addEventListener('click', handleClickLikeCard);
-
-  ulList.prepend(userElement);
+  // Инициализируем отслеживания клика на лайк
+  clickLikeCard(userElement)
+  // Инициализируем селектор для отслеживания клика на удаление
+  handleClickDeleteCard (userElement);
+  // Инициализируем селектор для открытия popup
   handleClickModalClose(popupCardEdit);
+  // вставляем новый элемент в начало узла
+  cardUlList.prepend(userElement);
+  // чистим форму
+  evt.target.reset();
 }
-// для отладки https://source.unsplash.com/collection/220381/300x400/
+// для отладки https://source.unsplash.com/collection/220381/
 
   popupCardForm.addEventListener('submit', handleCardFormSubmit);
   formCardEdit.addEventListener('click', () => handleClickModalOpen(popupCardEdit));
@@ -76,40 +79,47 @@ function handleCardFormSubmit (evt) {
 
 
 // --------------------------------------------------------------------------------------------ELEMENTS TEMPLATE
-
-let ulList = document.querySelector('.elements__grids');
+// клонируем содержимое тега template
 let template = document.querySelector('#elements__items').content;
+let cardUlList = document.querySelector('.elements__grids');
 
+// проходим по массиву для генерации карточки
 function printCards (data) {
   data.forEach((item) => {
     template.querySelector('.card__item').src = item.link;
     template.querySelector('.card__item').alt = item.name;
     template.querySelector('.card__title').textContent = item.name;
     let clone = template.cloneNode(true);
-    ulList.prepend(clone)
+
+    handleClickDeleteCard (clone);
+    clickLikeCard(clone)
+    // вставляем новый элемент в начало узла
+    cardUlList.prepend(clone)
+
   })
 }
-
 printCards(initialCards);
 
-// --------------------------------------------------------------------------------------------Карточка ELEMENTS
+// --------------------------------------------------------------------------------------------Карточка CARD в ELEMENTS
 
-// Лайки в карточке elements -> card
-let itemCollection = document.querySelectorAll('.card__like');
-itemCollection.forEach(item => item.addEventListener('click', () => {
-    item.classList.toggle('card__like_active');
-  })
-);
-
-// Отлавливаем вновь добавленный элемент
-let handleClickLikeCard = (evt) => {
+// ----------------Отлавливаем вновь добавленный элемент
+function handleClickLikeCard (evt){
   evt.target.classList.toggle('card__like_active')
 }
 
-// Удалить карточку elements -> card
+function clickLikeCard(element) {
+  let likeCard = element.querySelector('.card__like');
+  likeCard.addEventListener('click', handleClickLikeCard);
+}
+// --------------Удалить карточку elements -> card
+function clickDeleteCard (evt) {
+  evt.target.closest('.elements__items').remove()
+}
 
-
-
+function handleClickDeleteCard (node) {
+  let cardDeleteBtn = node.querySelector('.card__trash')
+  cardDeleteBtn.addEventListener('click', clickDeleteCard)
+}
 
 
 
