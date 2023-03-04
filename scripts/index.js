@@ -1,6 +1,5 @@
 const sectionProfile = document.querySelector('.profile')
 
-
 // Функция открытия модальных окон
 const handleClickModalOpen = (popupName) => {
   popupName.classList.add('popup_opened');
@@ -11,8 +10,7 @@ const handleClickModalClose = (popupName) =>  {
   popupName.classList.remove('popup_opened');
 }
 
-
-// -------------------------------------------------------------------------------------------- POPUP редактировать профиль
+// -------------------------------------------------------------------------------------------- POPUP редактирования профиля
 let profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
     profileName = sectionProfile.querySelector('.profile__name'),
     profileSubtitle = sectionProfile.querySelector('.profile__subtitle'),
@@ -43,12 +41,11 @@ let profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
   closeInput.addEventListener('click', () => handleClickModalClose(popupProfileEdit))
 
 // -------------------------------------------------------------------------------------------- POPUP добавление новой карточки
-
 let formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
     // форма в popup_add-card
     popupCardEdit = document.querySelector('.popup_add-card'),
     popupCardClose = popupCardEdit.querySelector('.popup__close'),
-    popupCardForm = popupCardEdit.querySelector('.popup__form_add');
+    popupCardForm = popupCardEdit.querySelector('.popup__form_add'),
     popupCardInputPlace = popupCardEdit.querySelector('.popup__input_string_place'),
     popupCardInputSrc = popupCardEdit.querySelector('.popup__input_string_src');
 
@@ -61,32 +58,33 @@ function handleCardFormSubmit (evt) {
   // добавляем из формы
   userElement.querySelector('.card__title').textContent = popupCardInputPlace.value;
   userElement.querySelector('.card__item').src = popupCardInputSrc.value;
+  userElement.querySelector('.card__item').alt = popupCardInputPlace.value;
   // Инициализируем отслеживания клика на лайк
   clickLikeCard(userElement)
   // Инициализируем селектор для отслеживания клика на удаление
   handleClickDeleteCard (userElement);
   // Инициализируем селектор для открытия popup
   handleClickModalClose(popupCardEdit);
+  // Инициализируем popup открытия изображения
+  cardUlListImg(userElement);
   // вставляем новый элемент в начало узла
-
-
   cardUlList.prepend(userElement);
   // чистим форму
   evt.target.reset();
 }
 // для отладки https://source.unsplash.com/collection/220381/
 
+// слушаем события
   popupCardForm.addEventListener('submit', handleCardFormSubmit);
   formCardEdit.addEventListener('click', () => handleClickModalOpen(popupCardEdit));
   popupCardClose.addEventListener('click', () => handleClickModalClose(popupCardEdit));
 
 
-// --------------------------------------------------------------------------------------------ELEMENTS TEMPLATE
+// --------------------------------------------------------------------------------------------Генерация ELEMENTS TEMPLATE
 // клонируем содержимое тега template
 let template = document.querySelector('#elements__items').content;
 let cardUlList = document.querySelector('.elements__grids');
 
-//cardUlList.removeEventListener('click', handleClickImageModal);
 
 // проходим по массиву для генерации карточки
 function printCards (data) {
@@ -94,26 +92,23 @@ function printCards (data) {
     template.querySelector('.card__item').src = item.link;
     template.querySelector('.card__item').alt = item.name;
     template.querySelector('.card__title').textContent = item.name;
-
-    let cardUlListImg = document.querySelector('.card__item');
-    let cardUlListTitle = document.querySelector('.card__title');
     let clone = template.cloneNode(true);
 
-    console.log(cardUlList);
-    cardUlList.addEventListener('click', handleClickImageModal)
+    // инициализируем popup открытия изображения
+    let cardUlListImg = clone.querySelector('.card__item');
+    cardUlListImg.addEventListener('click', handleClickImageModal)
+
     handleClickDeleteCard(clone);
     clickLikeCard(clone);
 
-
     // вставляем новый элемент в начало узла
     cardUlList.prepend(clone)
-
   })
 }
 
 printCards(initialCards);
 
-// --------------------------------------------------------------------------------------------Карточка CARD в ELEMENTS
+// --------------------------------------------------------------------------------------------Карточка CARD в ELEMENTS (удалить, поставить лайк)
 
 // ----------------Отлавливаем вновь добавленный элемент
 function handleClickLikeCard (evt){
@@ -135,21 +130,22 @@ function handleClickDeleteCard (node) {
 }
 
 // --------------------------------------------------------------------------------------------POPUP CARD
-let popupImg = document.querySelector('.popup_img-card')
-let popupCloseImg = popupImg.querySelector('.popup__close')
 
+//-------------------------------------функция для открытия модального окна по клику на картинку
+let popupImg = document.querySelector('.popup_img-card'),
+    popupCloseImg = popupImg.querySelector('.popup__close')
+
+let popupZoomImg = popupImg.querySelector('.popup__zoom-image'),
+    popupZoomTitle = popupImg.querySelector('.popup__zoom-title')
 
 popupCloseImg.addEventListener('click', (evt) =>{
   popupImg.classList.remove('popup_opened')
 })
 
-const popupZoomImg = popupImg.querySelector('.popup__zoom-image')
-const popupZoomTitle = popupImg.querySelector('.popup__zoom-title')
-//функция для открытия модального окна по клику на картинку
-function handleClickImageModal(evt) {
 
-  let imgSrc = evt.target.getAttribute('src')
-  let imgAlt = evt.target.getAttribute('alt')
+function handleClickImageModal(evt)  {
+  let imgSrc = evt.target.getAttribute('src'),
+      imgAlt = evt.target.getAttribute('alt')
 
   popupZoomImg.setAttribute('src', imgSrc)
   popupZoomImg.setAttribute('alt', imgAlt)
@@ -157,6 +153,13 @@ function handleClickImageModal(evt) {
 
   handleClickModalOpen(popupImg)
 }
+// popup открытия изображения
+function cardUlListImg(node){
+  let cardUlListImg = node.querySelector('.card__item');
+  cardUlListImg.addEventListener('click', handleClickImageModal)
+}
+
+
 
 
 
