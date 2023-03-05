@@ -85,9 +85,9 @@ function printCards (dataCard) {
     newElement.querySelector('.card__item').alt = dataCard.name;
     newElement.querySelector('.card__title').textContent = dataCard.name;
     // Инициализируем popup открытия изображения
-    cardUlListImg(newElement);
+    initImageModalOpen(newElement);
     // Инициализируем селектор для отслеживания клика на удаление
-    handleClickDeleteCard(newElement);
+    clickDeleteCard(newElement);
     // Инициализируем отслеживания клика на лайк
     initLikeCard(newElement);
     // вставляем новый элемент в начало узла
@@ -102,20 +102,20 @@ function renderCard (dataCard) {
 // --------------------------------------------------------------------------------------------Карточка CARD в ELEMENTS (удалить, поставить лайк)
 
 // ----------------Отлавливаем вновь добавленный элемент
-function handleClickLikeCard (evt){
+function clickLikeCard (evt){
   evt.target.classList.toggle('card__like_active')
 }
 
 function initLikeCard(element) {
   let likeCard = element.querySelector('.card__like');
-  likeCard.addEventListener('click', handleClickLikeCard);
+  likeCard.addEventListener('click', clickLikeCard);
 }
 // --------------Удалить карточку elements -> card
 function initDeleteCard (evt) {
   evt.target.closest('.elements__items').remove()
 }
 
-function handleClickDeleteCard (node) {
+function clickDeleteCard (node) {
   let cardDeleteBtn = node.querySelector('.card__trash')
   cardDeleteBtn.addEventListener('click', initDeleteCard)
 }
@@ -130,11 +130,12 @@ let popupZoomImg = popupImg.querySelector('.popup__zoom-image'),
     popupZoomTitle = popupImg.querySelector('.popup__zoom-title')
 
 popupCloseImg.addEventListener('click', (evt) =>{
-  popupImg.classList.remove('popup_opened')
+  modalClose(popupImg)
 })
 
 
-function handleClickImageModal(evt)  {
+
+function openImageModal(evt)  {
   let imgSrc = evt.target.getAttribute('src'),
       imgAlt = evt.target.getAttribute('alt')
 
@@ -145,19 +146,7 @@ function handleClickImageModal(evt)  {
   modalOpen(popupImg)
 }
 // popup открытия изображения
-function cardUlListImg(node){
+function initImageModalOpen(node){
   let cardUlListImg = node.querySelector('.card__item');
-  cardUlListImg.addEventListener('click', handleClickImageModal)
+  cardUlListImg.addEventListener('click', openImageModal)
 }
-
-
-
-
-
-
-
-
-
-
-
-
