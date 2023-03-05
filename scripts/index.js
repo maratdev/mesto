@@ -1,31 +1,32 @@
 const sectionProfile = document.querySelector('.profile')
-
 // Функция открытия модальных окон
-const handleClickModalOpen = (popupName) => {
+const modalOpen = (popupName) => {
   popupName.classList.add('popup_opened');
 }
-
 // Функция закрывания модальных окон при клике X
-const handleClickModalClose = (popupName) =>  {
+const modalClose = (popupName) =>  {
   popupName.classList.remove('popup_opened');
 }
+// клонируем содержимое тега template
+let template = document.querySelector('#elements__items').content;
+let cardUlList = document.querySelector('.elements__grids');
 
 // -------------------------------------------------------------------------------------------- POPUP редактирования профиля
-let profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
+const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
     profileName = sectionProfile.querySelector('.profile__name'),
     profileSubtitle = sectionProfile.querySelector('.profile__subtitle'),
     // форма в popup_edit-user
     popupProfileEdit = document.querySelector('.popup_edit-user'),
-    closeInput = popupProfileEdit.querySelector('.popup__close'),
+    popupProfileCloseButton = popupProfileEdit.querySelector('.popup__close'),
     nameInput = popupProfileEdit.querySelector('.popup__input_string_name'),
     jobInput = popupProfileEdit.querySelector('.popup__input_string_job'),
     formEdit = popupProfileEdit.querySelector('.popup__form_edit');
 
 
-  function openProfileEdit(popup) {
+  function openProfileEdit() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileSubtitle.textContent;
-    handleClickModalOpen(popup);
+    modalOpen(popupProfileEdit);
   }
 
   //Обработчик «отправки» формы
@@ -33,80 +34,70 @@ let profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
-    handleClickModalClose(popupProfileEdit);
+    modalClose(popupProfileEdit);
   }
+
 
   formEdit.addEventListener('submit', handleProfileFormSubmit);
   profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
-  closeInput.addEventListener('click', () => handleClickModalClose(popupProfileEdit))
+  popupProfileCloseButton.addEventListener('click', () => modalClose(popupProfileEdit))
 
-// -------------------------------------------------------------------------------------------- POPUP добавление новой карточки
+// -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 let formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
     // форма в popup_add-card
-    popupCardEdit = document.querySelector('.popup_add-card'),
-    popupCardClose = popupCardEdit.querySelector('.popup__close'),
-    popupCardForm = popupCardEdit.querySelector('.popup__form_add'),
-    popupCardInputPlace = popupCardEdit.querySelector('.popup__input_string_place'),
-    popupCardInputSrc = popupCardEdit.querySelector('.popup__input_string_src');
+    popupCardAdd = document.querySelector('.popup_add-card'),
+    popupCardClose = popupCardAdd.querySelector('.popup__close'),
+    popupCardForm = popupCardAdd.querySelector('.popup__form_add'),
+    popupCardInputPlace = popupCardAdd.querySelector('.popup__input_string_place'),
+    popupCardInputSrc = popupCardAdd.querySelector('.popup__input_string_src');
 
 
-//Обработчик «отправки» формы
-function handleCardFormSubmit (evt) {
-  evt.preventDefault();
-  // клонируем содержимое тега template
-  let userElement = template.querySelector('.elements__items').cloneNode(true);
-  // добавляем из формы
-  userElement.querySelector('.card__title').textContent = popupCardInputPlace.value;
-  userElement.querySelector('.card__item').src = popupCardInputSrc.value;
-  userElement.querySelector('.card__item').alt = popupCardInputPlace.value;
-  // Инициализируем отслеживания клика на лайк
-  clickLikeCard(userElement)
-  // Инициализируем селектор для отслеживания клика на удаление
-  handleClickDeleteCard (userElement);
-  // Инициализируем селектор для открытия popup
-  handleClickModalClose(popupCardEdit);
-  // Инициализируем popup открытия изображения
-  cardUlListImg(userElement);
-  // вставляем новый элемент в начало узла
-  cardUlList.prepend(userElement);
-  // чистим форму
-  evt.target.reset();
-}
+//функция-обработчик 'submit' для addCard
+  function cardFormSubmit(evt) {
+    // сбрасываем стандартное поведение формы
+    evt.preventDefault();
+    renderCard({name: popupCardInputPlace.value, link: popupCardInputSrc.value})
+    modalClose(popupCardAdd)
+    // чистим форму
+    evt.target.reset();
+  }
+
+
 // для отладки https://source.unsplash.com/collection/220381/
 
 // слушаем события
-  popupCardForm.addEventListener('submit', handleCardFormSubmit);
-  formCardEdit.addEventListener('click', () => handleClickModalOpen(popupCardEdit));
-  popupCardClose.addEventListener('click', () => handleClickModalClose(popupCardEdit));
+  popupCardForm.addEventListener('submit',  cardFormSubmit);
+  formCardEdit.addEventListener('click', () => modalOpen(popupCardAdd));
+  popupCardClose.addEventListener('click', () => modalClose(popupCardAdd));
 
 
-// --------------------------------------------------------------------------------------------Генерация ELEMENTS TEMPLATE
-// клонируем содержимое тега template
-let template = document.querySelector('#elements__items').content;
-let cardUlList = document.querySelector('.elements__grids');
+// --------------------------------------------------------------------------------------------ГЕНЕРАЦИЯ ELEMENTS из TEMPLATE
 
+// Перебор массива с данными
+initialCards.forEach((dataCard) => {
+  renderCard(dataCard)
+})
 
-// проходим по массиву для генерации карточки
-function printCards (data) {
-  data.forEach((item) => {
-    template.querySelector('.card__item').src = item.link;
-    template.querySelector('.card__item').alt = item.name;
-    template.querySelector('.card__title').textContent = item.name;
-    let clone = template.cloneNode(true);
-
+// выводим данные из массива
+function printCards (dataCard) {
+    const newElement = template.querySelector('.elements__items').cloneNode(true);
+    newElement.querySelector('.card__item').src = dataCard.link;
+    newElement.querySelector('.card__item').alt = dataCard.name;
+    newElement.querySelector('.card__title').textContent = dataCard.name;
     // Инициализируем popup открытия изображения
-    cardUlListImg(clone);
+    cardUlListImg(newElement);
     // Инициализируем селектор для отслеживания клика на удаление
-    handleClickDeleteCard(clone);
+    handleClickDeleteCard(newElement);
     // Инициализируем отслеживания клика на лайк
-    clickLikeCard(clone);
-
+    initLikeCard(newElement);
     // вставляем новый элемент в начало узла
-    cardUlList.prepend(clone)
-  })
+    return newElement;
 }
 
-printCards(initialCards);
+// функция отрисовки карточки методом prepend()
+function renderCard (dataCard) {
+  cardUlList.prepend(printCards(dataCard));
+}
 
 // --------------------------------------------------------------------------------------------Карточка CARD в ELEMENTS (удалить, поставить лайк)
 
@@ -115,21 +106,21 @@ function handleClickLikeCard (evt){
   evt.target.classList.toggle('card__like_active')
 }
 
-function clickLikeCard(element) {
+function initLikeCard(element) {
   let likeCard = element.querySelector('.card__like');
   likeCard.addEventListener('click', handleClickLikeCard);
 }
 // --------------Удалить карточку elements -> card
-function clickDeleteCard (evt) {
+function initDeleteCard (evt) {
   evt.target.closest('.elements__items').remove()
 }
 
 function handleClickDeleteCard (node) {
   let cardDeleteBtn = node.querySelector('.card__trash')
-  cardDeleteBtn.addEventListener('click', clickDeleteCard)
+  cardDeleteBtn.addEventListener('click', initDeleteCard)
 }
 
-// --------------------------------------------------------------------------------------------POPUP CARD
+// --------------------------------------------------------------------------------------------POPUP CARD IMG
 
 //-------------------------------------функция для открытия модального окна по клику на картинку
 let popupImg = document.querySelector('.popup_img-card'),
@@ -151,7 +142,7 @@ function handleClickImageModal(evt)  {
   popupZoomImg.setAttribute('alt', imgAlt)
   popupZoomTitle.textContent = imgAlt
 
-  handleClickModalOpen(popupImg)
+  modalOpen(popupImg)
 }
 // popup открытия изображения
 function cardUlListImg(node){
