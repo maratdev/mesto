@@ -76,9 +76,6 @@
 @import url(../blocks/popup/__title/popup__title.css);
 
 
-/*------------div.popup --> form --> input.button */
-@import url(../blocks/form/__input-btn/form__input-btn.css);
-
 
 /*------------------------------------------------POPUP IMG-CARD*/
 /*------------div.popup_img-card */
@@ -98,4 +95,11 @@
 
 /*------------div.popup --> form --> input.popup__input */
 @import url(../blocks/form/__input/form__input.css);
+/*------------div.popup --> form --> input.popup__input */
+@import url(../blocks/form/__span-error/form__span-error.css);
+/*------------div.popup --> form --> input.button */
+@import url(../blocks/form/__input-btn/form__input-btn.css);
+/*------------div.popup --> form --> input.button.disabled */
+@import url(../blocks/form/__input-btn/_disabled/form__input-btn_disabled.css);
+@import url(../blocks/form/__input/_error/form__input_error.css);
 
