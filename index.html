@@ -40,7 +40,7 @@
       <button type="button" class="popup__close" aria-label="Закрыть Popup"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
 
-      <form class="form form__edit-user" name="popup__form-edit-user" novalidate>
+      <form class="form form_edit-user" name="popup__form-edit-user" novalidate>
         <fieldset class="form__fieldset">
           <input id="name-input" class="form__input form__input_string_name" value="tempName" type="text" name="user_name" placeholder="Ваше имя" required maxlength="40" minlength="2">
             <span class="form__span-error name-input-error"></span>
@@ -58,9 +58,9 @@
       <button type="button" class="popup__close" aria-label="Закрыть Popup"></button>
       <h3 class="popup__title">Новое место</h3>
 
-      <form class="form form__add-card" name="popup__form-add-card" novalidate>
+      <form class="form form_add-card" name="popup__form-add-card" novalidate>
         <fieldset class="form__fieldset">
-          <input id="image-input" class="form__input form__input_string_place" type="text" value="" name="card_name" placeholder="Название"  maxlength="40" minlength="2" required>
+          <input id="image-input" class="form__input form__input_string_place" type="text" value="" name="card_name" placeholder="Название"  maxlength="30" minlength="2" required>
            <span class="form__span-error image-input-error"></span>
           <input id="src-input" class="form__input form__input_string_src" type="url" value="" name="card_src" placeholder="Ссылка на картинку" required>
             <span class="form__span-error src-input-error"></span>

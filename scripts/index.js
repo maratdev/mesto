@@ -39,7 +39,7 @@ const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
   popupProfileCloseButton = popupProfileEdit.querySelector('.popup__close'),
   nameInput = popupProfileEdit.querySelector('.form__input_string_name'),
   jobInput = popupProfileEdit.querySelector('.form__input_string_job'),
-  formEdit = popupProfileEdit.querySelector('.form__edit-user');
+  formEdit = popupProfileEdit.querySelector('.form_edit-user');
 
 
 function openProfileEdit() {
@@ -66,7 +66,7 @@ const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   // форма в popup_add-card
   popupCardAdd = document.querySelector('.popup_add-card'),
   popupCardClose = popupCardAdd.querySelector('.popup__close'),
-  popupCardForm = popupCardAdd.querySelector('.form__add-card'),
+  popupCardForm = popupCardAdd.querySelector('.form_add-card'),
   popupCardInputPlace = popupCardAdd.querySelector('.form__input_string_place'),
   popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src');
 
