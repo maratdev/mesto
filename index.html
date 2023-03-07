@@ -39,10 +39,13 @@
     <div class="popup__container">
       <button aria-label="Закрыть Popup" type="button" class="popup__close"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form name="popup_form" class="popup__form popup__form_edit">
-        <input class="popup__input popup__input_string_name" type="text" name="user_name" placeholder="Ваше имя" required maxlength="20" minlength="4">
-        <input class="popup__input popup__input_string_job" type="text" name="user_job" placeholder="О себе" required maxlength="40" minlength="6">
-        <input class="popup__input-btn" type="submit" value="Сохранить">
+      <form class="form form__edit-user"  name="popup_form-edit-user">
+        <fieldset class="form__fieldset">
+          <input class="form__input form__input_string_name" type="text" name="user_name" placeholder="Ваше имя" required maxlength="40" minlength="2">
+          <span class="form__span-error name-input-error"></span>
+          <input class="form__input form__input_string_job" type="text" name="user_job" placeholder="О себе" required maxlength="200" minlength="2">
+          <input class="form__input-btn" type="submit" value="Сохранить">
+      </fieldset>
       </form>
     </div>
   </div>
@@ -51,10 +54,10 @@
     <div class="popup__container">
       <button aria-label="Закрыть Popup" type="button" class="popup__close"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form name="popup_form" class="popup__form popup__form_add">
-        <input class="popup__input popup__input_string_place" type="text" name="card_name" placeholder="Название" required maxlength="20" minlength="4">
-        <input class="popup__input popup__input_string_src" type="url" name="card_src" placeholder="Ссылка на картинку" required>
-        <input class="popup__input-btn" type="submit" value="Создать">
+      <form class="form form__form_add" name="popup_form" >
+        <input class="form__input popup__input_string_place" type="text" name="card_name" placeholder="Название" required maxlength="20" minlength="2">
+        <input class="form__input  popup__input_string_src" type="url" name="card_src" placeholder="Ссылка на картинку" required>
+        <input class="form__input-btn" type="submit" value="Создать">
       </form>
     </div>
   </div>
@@ -80,6 +83,7 @@
     </li>
   </template>
   <!----------------------------------------------------->
+  <script defer src="scripts/validate.js"></script>
   <script defer src="scripts/data.js"></script>
   <script defer src="scripts/index.js"></script>
 </body>
