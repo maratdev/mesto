@@ -47,9 +47,9 @@ const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   // форма в popup_add-card
   popupCardAdd = document.querySelector('.popup_add-card'),
   popupCardClose = popupCardAdd.querySelector('.popup__close'),
-  popupCardForm = popupCardAdd.querySelector('.form__form_add'),
-  popupCardInputPlace = popupCardAdd.querySelector('.popup__input_string_place'),
-  popupCardInputSrc = popupCardAdd.querySelector('.popup__input_string_src');
+  popupCardForm = popupCardAdd.querySelector('.form__form_add-card'),
+  popupCardInputPlace = popupCardAdd.querySelector('.form__input_string_place'),
+  popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src');
 
 
 //функция-обработчик 'submit' для addCard
