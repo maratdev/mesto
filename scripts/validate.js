@@ -101,7 +101,6 @@ const enableValidation = (object) => {
 
   // Переберём полученную коллекцию
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', disabledSubmit);
     // Для каждой формы вызываем функцию setEventListeners, передав ей элемент формы
     setEventListeners(object, formElement);
   });
