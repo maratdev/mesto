@@ -74,17 +74,28 @@
 @import url(../blocks/popup/__close/popup__close.css);
 /*------------div.popup --> p */
 @import url(../blocks/popup/__title/popup__title.css);
-/*------------div.popup --> form */
-@import url(../blocks/popup/__form/popup__form.css);
-/*------------div.popup --> form --> input.popup__input */
-@import url(../blocks/popup/__input/popup__input.css);
+
+
 /*------------div.popup --> form --> input.button */
-@import url(../blocks/popup/__input-btn/popup__input-btn.css);
+@import url(../blocks/form/__input-btn/form__input-btn.css);
+
 
 /*------------------------------------------------POPUP IMG-CARD*/
-@import url(../blocks/popup/img-container/popup__img-container.css);
-@import url(../blocks/popup/__zoom-title/popup__zoom-title.css);
-@import url(../blocks/popup/__zoom-image/popup__zoom-image.css);
+/*------------div.popup_img-card */
 @import url(../blocks/popup/_img-card/popup_img-card.css);
+/*------------div.popup_img-card --> div.popup__img-container */
+@import url(../blocks/popup/img-container/popup__img-container.css);
+/*------------div.popup_img-card --> div --> img */
+@import url(../blocks/popup/__zoom-image/popup__zoom-image.css);
+/*------------div.popup_img-card --> div --> h3 */
+@import url(../blocks/popup/__zoom-title/popup__zoom-title.css);
 
+
+/*------------------------------------------------FORM */
+/*------------div.popup --> form */
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__fieldset/form__fieldset.css);
+
+/*------------div.popup --> form --> input.popup__input */
+@import url(../blocks/form/__input/form__input.css);
 
