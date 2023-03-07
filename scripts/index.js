@@ -167,3 +167,4 @@ function initImageModalOpen(node){
   const cardUlListImg = node.querySelector('.card__item');
   cardUlListImg.addEventListener('click', openImageModal)
 }
+
