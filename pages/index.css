@@ -91,15 +91,15 @@
 /*------------------------------------------------FORM */
 /*------------div.popup --> form */
 @import url(../blocks/form/form.css);
+/*------------div.popup --> form  --> fieldset*/
 @import url(../blocks/form/__fieldset/form__fieldset.css);
-
-/*------------div.popup --> form --> input.popup__input */
+/*------------div.popup --> form --> fieldset --> input.popup__input */
 @import url(../blocks/form/__input/form__input.css);
-/*------------div.popup --> form --> input.popup__input */
+/*------------div.popup --> form --> fieldset --> span */
 @import url(../blocks/form/__span-error/form__span-error.css);
-/*------------div.popup --> form --> input.button */
+/*------------div.popup --> form --> fieldset --> input.button */
 @import url(../blocks/form/__input-btn/form__input-btn.css);
-/*------------div.popup --> form --> input.button.disabled */
+/*------------div.popup --> form --> fieldset --> input.button.disabled */
 @import url(../blocks/form/__input-btn/_disabled/form__input-btn_disabled.css);
 @import url(../blocks/form/__input/_error/form__input_error.css);
 
