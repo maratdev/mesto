@@ -1,12 +1,31 @@
+const popupsAll = document.querySelectorAll('.popup');
 const sectionProfile = document.querySelector('.profile')
 // Функция открытия модальных окон
 const openModal = (popupName) => {
   popupName.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 // Функция закрывания модальных окон при клике X
 const closeModal = (popupName) =>  {
   popupName.classList.remove('popup_opened');
 }
+
+// Функция закрывания модальных окон при клике ESC
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closeModal(openedPopup);
+  }
+}
+
+// Функция закрывания модальных окон при клике вне его
+popupsAll.forEach((overlayPopup) => {
+  overlayPopup.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+      closeModal(overlayPopup);
+    }
+  });
+});
 // клонируем содержимое тега template
 const template = document.querySelector('#elements__items').content;
 const cardUlList = document.querySelector('.elements__grids');
@@ -37,17 +56,17 @@ function handleProfileFormSubmit (evt) {
   closeModal(popupProfileEdit);
 }
 
-
 formEdit.addEventListener('submit', handleProfileFormSubmit);
 profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
 popupProfileCloseButton.addEventListener('click', () => closeModal(popupProfileEdit))
+
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   // форма в popup_add-card
   popupCardAdd = document.querySelector('.popup_add-card'),
   popupCardClose = popupCardAdd.querySelector('.popup__close'),
-  popupCardForm = popupCardAdd.querySelector('.form__form_add-card'),
+  popupCardForm = popupCardAdd.querySelector('.form__add-card'),
   popupCardInputPlace = popupCardAdd.querySelector('.form__input_string_place'),
   popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src');
 

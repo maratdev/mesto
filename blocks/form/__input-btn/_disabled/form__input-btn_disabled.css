@@ -5,6 +5,6 @@
   background-color: #E5E5E5;
   opacity: 0.2;
 }
-.form__button-submit_disabled:hover {
+.form__input-btn_disabled:hover {
   opacity: 0.2;
 }
