@@ -3,11 +3,11 @@ const sectionProfile = document.querySelector('.profile')
 // Функция открытия модальных окон
 const openModal = (popupName) => {
   popupName.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
 }
 // Функция закрывания модальных окон при клике X
 const closeModal = (popupName) =>  {
   popupName.classList.remove('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 // Функция закрывания модальных окон при клике ESC
@@ -17,18 +17,14 @@ function closeByEscape(evt) {
     closeModal(openedPopup);
   }
 }
-
 // Функция закрывания модальных окон при клике вне его
 popupsAll.forEach((overlayPopup) => {
-  overlayPopup.addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
+  overlayPopup.addEventListener('mousedown', (evt) => {
+    if (evt.target === evt.currentTarget) {
       closeModal(overlayPopup);
     }
   });
 });
-// клонируем содержимое тега template
-const template = document.querySelector('#elements__items').content;
-const cardUlList = document.querySelector('.elements__grids');
 
 // -------------------------------------------------------------------------------------------- POPUP редактирования профиля
 const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
@@ -60,7 +56,6 @@ formEdit.addEventListener('submit', handleProfileFormSubmit);
 profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
 popupProfileCloseButton.addEventListener('click', () => closeModal(popupProfileEdit))
 
-
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   // форма в popup_add-card
@@ -68,27 +63,31 @@ const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   popupCardClose = popupCardAdd.querySelector('.popup__close'),
   popupCardForm = popupCardAdd.querySelector('.form_add-card'),
   popupCardInputPlace = popupCardAdd.querySelector('.form__input_string_place'),
-  popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src');
-
+  popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src'),
+  popupCardInputBtn = popupCardAdd.querySelector('.form__input-btn');
 
 //функция-обработчик 'submit' для addCard
-function cardFormSubmit(evt) {
+function handleLikeButton(evt) {
   // сбрасываем стандартное поведение формы
   evt.preventDefault();
   renderCard({name: popupCardInputPlace.value, link: popupCardInputSrc.value})
   closeModal(popupCardAdd)
+  popupCardInputBtn.classList.add('form__input-btn_disabled');
   // чистим форму
-  evt.target.reset();
+  evt.currentTarget.reset();
 }
 
 // для отладки https://source.unsplash.com/collection/220381/
 
 // слушаем события
-popupCardForm.addEventListener('submit',  cardFormSubmit);
+popupCardForm.addEventListener('submit',  handleLikeButton);
 formCardEdit.addEventListener('click', () => openModal(popupCardAdd));
 popupCardClose.addEventListener('click', () => closeModal(popupCardAdd));
 
 // --------------------------------------------------------------------------------------------ГЕНЕРАЦИЯ ELEMENTS из TEMPLATE
+// клонируем содержимое тега template
+const template = document.querySelector('#elements__items').content;
+const cardUlList = document.querySelector('.elements__grids');
 
 // Перебор массива с данными
 initialCards.forEach((dataCard) => {
@@ -150,8 +149,6 @@ popupCloseImg.addEventListener('click', (evt) =>{
   closeModal(popupImg)
 })
 
-
-
 function openImageModal(evt)  {
   const imgSrc = evt.target.getAttribute('src'),
     imgAlt = evt.target.getAttribute('alt')
@@ -167,4 +164,3 @@ function initImageModalOpen(node){
   const cardUlListImg = node.querySelector('.card__item');
   cardUlListImg.addEventListener('click', openImageModal)
 }
-
