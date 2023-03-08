@@ -7,10 +7,6 @@ const object = {
   inputErrorClass: 'form__input-error',
 };
 
-function disabledSubmit(evt) {
-  evt.preventDefault();
-}
-
 //Добавляет обработчики сразу всем полям формы
 const setEventListeners = (object, formElement) => {
   // Находим все поля внутри формы,
