@@ -3,7 +3,7 @@ const sectionProfile = document.querySelector('.profile')
 // Функция открытия модальных окон
 const openModal = (popupName) => {
   popupName.classList.add('popup_opened');
-
+  document.addEventListener('keydown', closeByEscape);
 }
 // Функция закрывания модальных окон при клике X
 const closeModal = (popupName) =>  {
@@ -72,21 +72,22 @@ const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   popupCardInputBtn = popupCardAdd.querySelector('.form__input-btn');
 
 
-//функция-обработчик 'submit' для addCard
-function handleLikeButton(evt) {
+//функция-обработчик
+function handleEditCard(evt) {
   // сбрасываем стандартное поведение формы
   evt.preventDefault();
   renderCard({name: popupCardInputPlace.value, link: popupCardInputSrc.value})
   closeModal(popupCardAdd)
   // чистим форму
   evt.target.reset();
-  popupCardInputBtn.classList.add('form__input-btn_disabled');
+  evt.submitter.classList.add('form__input-btn_disabled')
+  evt.submitter.disabled = true;
 }
 
 // для отладки https://source.unsplash.com/collection/220381/
 
 // слушаем события
-popupCardForm.addEventListener('submit',  handleLikeButton);
+popupCardForm.addEventListener('submit',  handleEditCard);
 formCardEdit.addEventListener('click', () => openModal(popupCardAdd));
 popupCardClose.addEventListener('click', () => closeModal(popupCardAdd));
 
