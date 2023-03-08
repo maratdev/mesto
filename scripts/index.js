@@ -3,6 +3,7 @@ const sectionProfile = document.querySelector('.profile')
 // Функция открытия модальных окон
 const openModal = (popupName) => {
   popupName.classList.add('popup_opened');
+
 }
 // Функция закрывания модальных окон при клике X
 const closeModal = (popupName) =>  {
@@ -17,6 +18,7 @@ function closeByEscape(evt) {
     closeModal(openedPopup);
   }
 }
+
 // Функция закрывания модальных окон при клике вне его
 popupsAll.forEach((overlayPopup) => {
   overlayPopup.addEventListener('mousedown', (evt) => {
@@ -35,12 +37,14 @@ const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
   popupProfileCloseButton = popupProfileEdit.querySelector('.popup__close'),
   nameInput = popupProfileEdit.querySelector('.form__input_string_name'),
   jobInput = popupProfileEdit.querySelector('.form__input_string_job'),
-  formEdit = popupProfileEdit.querySelector('.form_edit-user');
+  formEdit = popupProfileEdit.querySelector('.form_edit-user'),
+  formEditBtn = popupProfileEdit.querySelector('.form__input-btn');
 
 
 function openProfileEdit() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileSubtitle.textContent;
+  formEditBtn.classList.remove('form__input-btn_disabled');
   openModal(popupProfileEdit);
 }
 
@@ -56,6 +60,7 @@ formEdit.addEventListener('submit', handleProfileFormSubmit);
 profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
 popupProfileCloseButton.addEventListener('click', () => closeModal(popupProfileEdit))
 
+
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   // форма в popup_add-card
@@ -66,15 +71,16 @@ const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src'),
   popupCardInputBtn = popupCardAdd.querySelector('.form__input-btn');
 
+
 //функция-обработчик 'submit' для addCard
 function handleLikeButton(evt) {
   // сбрасываем стандартное поведение формы
   evt.preventDefault();
   renderCard({name: popupCardInputPlace.value, link: popupCardInputSrc.value})
   closeModal(popupCardAdd)
-  popupCardInputBtn.classList.add('form__input-btn_disabled');
   // чистим форму
-  evt.currentTarget.reset();
+  evt.target.reset();
+  popupCardInputBtn.classList.add('form__input-btn_disabled');
 }
 
 // для отладки https://source.unsplash.com/collection/220381/
@@ -149,6 +155,7 @@ popupCloseImg.addEventListener('click', (evt) =>{
   closeModal(popupImg)
 })
 
+
 function openImageModal(evt)  {
   const imgSrc = evt.target.getAttribute('src'),
     imgAlt = evt.target.getAttribute('alt')
@@ -156,7 +163,6 @@ function openImageModal(evt)  {
   popupZoomImg.setAttribute('src', imgSrc)
   popupZoomImg.setAttribute('alt', imgAlt)
   popupZoomTitle.textContent = imgAlt
-
   openModal(popupImg)
 }
 // popup открытия изображения
@@ -164,3 +170,4 @@ function initImageModalOpen(node){
   const cardUlListImg = node.querySelector('.card__item');
   cardUlListImg.addEventListener('click', openImageModal)
 }
+
