@@ -8,7 +8,7 @@ const openModal = (popupName) => {
 // Функция закрывания модальных окон при клике X
 const closeModal = (popupName) =>  {
   popupName.classList.remove('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 // Функция закрывания модальных окон при клике ESC
