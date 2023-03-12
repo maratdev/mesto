@@ -19,7 +19,6 @@
 @media (max-width: 425px) {
   .form__input-btn{
     font-size: 0.875rem;
-    margin: 45px 0 0;
     padding: 14px 0 14px;
   }
 }
