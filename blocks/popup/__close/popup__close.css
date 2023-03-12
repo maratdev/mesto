@@ -19,7 +19,7 @@
   .popup__close{
     height: 20px;
     width: 20px;
-    background: 0 0 / 20px 20px url(../../../images/form_close.svg) no-repeat;
+    background-size: 20px 20px;
     top: -36px;
     right: 0;
   }
