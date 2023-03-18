@@ -1,7 +1,6 @@
 // --------------------------IMPORTANT
 import Card from "./Card.js";
 // -------------------------------------
-const cardUlList = document.querySelector(".elements__grids");
 const popupsAll = document.querySelectorAll('.popup');
 const sectionProfile = document.querySelector('.profile')
 // Функция открытия модальных окон
@@ -81,7 +80,8 @@ function handleEditCard(evt) {
   // сбрасываем стандартное поведение формы
   evt.preventDefault();
   const card = createCard({name: popupCardInputPlace.value, link: popupCardInputSrc.value})
-  cardUlList.prepend(card);
+  // Добавляем в DOM
+  renderCard (card)
   closeModal(popupCardAdd)
   // чистим форму
   evt.target.reset();
@@ -102,7 +102,7 @@ function showInitialCards() {
   initialCards.forEach((dataCard) => {
     const cardElement = createCard(dataCard);
     // Добавляем в DOM
-    cardUlList.prepend(cardElement);
+    renderCard (cardElement)
   });
 }
 showInitialCards();
@@ -113,53 +113,12 @@ function createCard(data) {
   return cards.generateCard();
 }
 
-
-
-// initialCards.forEach((dataCard) => {
-//   const cards = new Card(dataCard.name, dataCard.link, '#elements__items', initImageModalOpen);
-//   // Создаём карточку и возвращаем наружу
-//   const cardElement = cards.generateCard();
-//
-//   // Добавляем в DOM
-//   cardUlList.prepend(cardElement);
-// })
-
-
-
-// // выводим данные из массива
-// function createCard (cards) {
-//   const newElement = document.querySelector('#elements__items').content.querySelector('.elements__items').cloneNode(true);
-//   // Инициализируем popup открытия изображения
-//   initImageModalOpen(newElement);
-//   // Инициализируем селектор для отслеживания клика на удаление
-//   initDeleteCard(newElement);
-//   // Инициализируем отслеживания клика на лайк
-//   initLikeCard(newElement);
-//   // вставляем новый элемент в начало узла
-//   return newElement;
-// }
-
-
-// --------------------------------------------------------------------------------------------Карточка CARD в ELEMENTS (удалить, поставить лайк)
-
-// ----------------Отлавливаем вновь добавленный элемент
-function clickLikeCard (evt){
-  evt.target.classList.toggle('card__like_active')
+// функция отрисовки карточки методом prepend()
+function renderCard (node) {
+  const cardUlList = document.querySelector(".elements__grids");
+  cardUlList.prepend(node);
 }
 
-function initLikeCard(element) {
-  const likeCard = element.querySelector('.card__like');
-  likeCard.addEventListener('click', clickLikeCard);
-}
-// --------------Удалить карточку elements -> card
-function clickDeleteCard (evt) {
-  evt.target.closest('.elements__items').remove()
-}
-
-function initDeleteCard (node) {
-  const cardDeleteBtn = node.querySelector('.card__trash')
-  cardDeleteBtn.addEventListener('click', clickDeleteCard)
-}
 
 // --------------------------------------------------------------------------------------------POPUP CARD IMG
 
@@ -185,10 +144,11 @@ function openImageModal(evt)  {
   openModal(popupImg)
 }
 //popup открытия изображения
-function initImageModalOpen(node){
-  console.log(node);
-  const cardUlListImg = node.querySelector('.card__item');
-  cardUlListImg.addEventListener('click', openImageModal)
+function initImageModalOpen(name, link){
+  openModal(popupImg);
+  popupZoomImg.src = link;
+  popupZoomImg.alt = name;
+  popupZoomTitle.textContent = name;
 
 }
 
