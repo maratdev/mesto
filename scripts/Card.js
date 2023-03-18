@@ -29,8 +29,17 @@ export default class Card {
   }
 
   _setEventListeners() {
+
     this._cardImage.addEventListener("click", () => {
-       this._initImageModalOpen(this._element);
+       this._initImageModalOpen(this._name, this._link);
+    });
+      // --------------Удалить карточку elements -> card
+    this._element.querySelector(".card__trash").addEventListener("click", () => {
+      this._element.remove();
+    });
+
+    this._element.querySelector(".card__like").addEventListener("click", (evt) => {
+      evt.target.classList.toggle('card__like_active')
     });
   };
 
