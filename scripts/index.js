@@ -2,6 +2,9 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 // -------------------------------------
+// находим все крестики проекта по универсальному селектору
+const closeButtons = document.querySelectorAll('.popup__close');
+
 const popupsAll = document.querySelectorAll('.popup');
 const sectionProfile = document.querySelector('.profile')
 
@@ -47,7 +50,6 @@ const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
 function openProfileEdit() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileSubtitle.textContent;
-  formEditBtn.classList.remove('form__input-btn_disabled');
   openModal(popupProfileEdit);
 }
 
@@ -61,7 +63,12 @@ function handleProfileFormSubmit (evt) {
 
 formEdit.addEventListener('submit', handleProfileFormSubmit);
 profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
-popupProfileCloseButton.addEventListener('click', () => closeModal(popupProfileEdit))
+// обработчики крестиков
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closeModal(popup));
+});
 
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
@@ -86,10 +93,7 @@ function handleEditCard(evt) {
   // чистим форму
   evt.target.reset();
   validPopupCardForm.resetValidation();
-  evt.submitter.classList.add('form__input-btn_disabled')
-  evt.submitter.disabled = true;
 }
-
 // для отладки https://source.unsplash.com/collection/220381/
 
 // слушаем события
@@ -154,6 +158,8 @@ const object = {
 
 const validPopupEditForm = new FormValidator(object, popupProfileEdit);
 validPopupEditForm.enableValidation();
+validPopupEditForm.submitFalse();
+
 
 const validPopupCardForm = new FormValidator(object, popupCardAdd);
 validPopupCardForm.enableValidation();
