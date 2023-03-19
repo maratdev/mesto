@@ -23,13 +23,11 @@ export default class Card {
     this._element.querySelector('.card__title').textContent = this._name;
 
     this._setEventListeners();
-
     // Вернём элемент наружу
     return this._element;
   }
 
   _setEventListeners() {
-
     this._cardImage.addEventListener("click", () => {
        this._initImageModalOpen(this._name, this._link);
     });

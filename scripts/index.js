@@ -1,8 +1,10 @@
-// --------------------------IMPORTANT
+// --------------------------------------------IMPORTANT
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 // -------------------------------------
 const popupsAll = document.querySelectorAll('.popup');
 const sectionProfile = document.querySelector('.profile')
+
 // Функция открытия модальных окон
 const openModal = (popupName) => {
   popupName.classList.add('popup_opened');
@@ -13,7 +15,6 @@ const closeModal = (popupName) =>  {
   popupName.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
 }
-
 // Функция закрывания модальных окон при клике ESC
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
@@ -21,7 +22,6 @@ function closeByEscape(evt) {
     closeModal(openedPopup);
   }
 }
-
 // Функция закрывания модальных окон при клике вне его
 popupsAll.forEach((overlayPopup) => {
   overlayPopup.addEventListener('mousedown', (evt) => {
@@ -85,6 +85,7 @@ function handleEditCard(evt) {
   closeModal(popupCardAdd)
   // чистим форму
   evt.target.reset();
+  validPopupCardForm.resetValidation();
   evt.submitter.classList.add('form__input-btn_disabled')
   evt.submitter.disabled = true;
 }
@@ -109,7 +110,7 @@ showInitialCards();
 
 function createCard(data) {
   const cards = new Card(data.name, data.link, '#elements__items', initImageModalOpen);
-  // Создаём карточку и возвращаем наружу
+  // Создаём карточку и возвращаем
   return cards.generateCard();
 }
 
@@ -118,7 +119,6 @@ function renderCard (node) {
   const cardUlList = document.querySelector(".elements__grids");
   cardUlList.prepend(node);
 }
-
 
 // --------------------------------------------------------------------------------------------POPUP CARD IMG
 
@@ -133,23 +133,30 @@ popupCloseImg.addEventListener('click', (evt) =>{
   closeModal(popupImg)
 })
 
-
-function openImageModal(evt)  {
-  const imgSrc = evt.target.getAttribute('src'),
-        imgAlt = evt.target.getAttribute('alt')
-
-  popupZoomImg.setAttribute('src', imgSrc)
-  popupZoomImg.setAttribute('alt', imgAlt)
-  popupZoomTitle.textContent = imgAlt
-  openModal(popupImg)
-}
 //popup открытия изображения
 function initImageModalOpen(name, link){
   openModal(popupImg);
   popupZoomImg.src = link;
   popupZoomImg.alt = name;
   popupZoomTitle.textContent = name;
-
 }
+
+// -------------------------------------------------------------------------------------------- Валидация
+
+const object = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitSelector: '.form__input-btn',
+  disabledButtonClass: 'form__input-btn_disabled',
+  errorClass: 'form__span-error',
+  inputErrorClass: 'form__input-error',
+};
+
+const validPopupEditForm = new FormValidator(object, popupProfileEdit);
+validPopupEditForm.enableValidation();
+
+const validPopupCardForm = new FormValidator(object, popupCardAdd);
+validPopupCardForm.enableValidation();
+
 
 
