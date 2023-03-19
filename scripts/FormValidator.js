@@ -27,13 +27,14 @@ export default class FormValidator {
     errorElement.textContent = '';
   }
 
-  // formElement — html-элемент формы, в которой находится проверяемое поле ввода. Он нужен для поиска элемента ошибки в форме.
+// formElement — html-элемент формы, в которой находится проверяемое поле ввода. Он нужен для поиска элемента ошибки в форме.
 // inputElement — проверяемое поле ввода.
 // Функция, которая проверяет валидность поля
   _isValid(inputElement){
     if (!inputElement.validity.valid) {
       // Если поле не проходит валидацию, покажем ошибку
       this._showInputError(inputElement, inputElement.validationMessage);
+
     } else {
       // Если проходит, скроем
       this._hideInputError(inputElement);
@@ -41,12 +42,12 @@ export default class FormValidator {
   }
 
   // Делаем кнопку отправки неактивной
-  disabledSubmitBtm(){
+  disabledSubmitBtn(){
     this._buttonElement.classList.add(this._disabledButtonClass);
     this._buttonElement.disabled = true;
   };
   // Активной
-  activeSubmitBtm(){
+  activeSubmitBtn(){
     this._buttonElement.classList.remove(this._disabledButtonClass);
     this._buttonElement.disabled = false;
   };
@@ -54,11 +55,12 @@ export default class FormValidator {
   // Функция, которая проверяет валидность полей и отключает или включает кнопку отправки.
  _toggleButtonState(){
     if (this._hasInvalidInput()) { //если хотя бы один невалидный инпут, кнопка неактивна
-      this.disabledSubmitBtm()
+      this.disabledSubmitBtn()
     } else {
-      this.activeSubmitBtm()
+      this.activeSubmitBtn()
     }
   };
+
 
 
   // Ищем невалидные поля. Функция принимает массив полей формы и вернет true, если хотя бы одно поле не валидно, и false, если все валидны.
@@ -77,16 +79,23 @@ _setEventListeners(){
       this._toggleButtonState();
     });
   });
+
 };
   enableValidation = () => {
     this._toggleButtonState();
     this._setEventListeners();
   };
 
+  submitFalse = () => {
+    this._buttonElement.disabled = false;
+    this._buttonElement.classList.remove('form__input-btn_disabled');
+  }
+
   resetValidation() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
+
     this._toggleButtonState();
   }
 
