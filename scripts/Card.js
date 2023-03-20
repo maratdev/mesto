@@ -29,29 +29,25 @@ export default class Card {
 
   _setEventListeners() {
     // Открыть картинку elements -> card
-    this._handleImageClick()
+    this._cardImage.addEventListener("click", () => this._handleImageClick());
    // Удалить карточку elements -> card
-    this._deleteCard()
+    this._element.querySelector(".card__trash").addEventListener("click", () => this._deleteCard());
     // Лайк карточки elements -> card
-    this._toggleLike()
+    this._element.querySelector(".card__like").addEventListener("click", (evt) => this._toggleLike(evt));
+
   };
 
   _toggleLike(evt){
-    this._element.querySelector(".card__like").addEventListener("click", (evt) => {
       evt.target.classList.toggle('card__like_active')
-    });
   }
 
   _deleteCard(){
-    this._element.querySelector(".card__trash").addEventListener("click", () => {
-      this._element.remove();
-    });
+    this._element.remove();
   }
 
   _handleImageClick(){
-    this._cardImage.addEventListener("click", () => {
-      this._initImageModalOpen(this._name, this._link);
-    });
+    this._initImageModalOpen(this._name, this._link);
+
   }
 
 }
