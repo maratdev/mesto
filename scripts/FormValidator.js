@@ -88,7 +88,7 @@ _setEventListeners(){
 
   submitFalse = () => {
     this._buttonElement.disabled = false;
-    this._buttonElement.classList.remove('form__input-btn_disabled');
+    this._buttonElement.classList.remove(this._disabledButtonClass);
   }
 
   resetValidation() {
