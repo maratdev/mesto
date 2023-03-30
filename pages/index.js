@@ -82,15 +82,20 @@ const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src'),
   popupCardInputBtn = popupCardAdd.querySelector('.form__input-btn');
 
+function createCard(card){
+  const cardElement = card.generateCard();
+  cardsList.addItem(cardElement);
+}
 
 //функция-обработчик
 function handleEditCard(evt) {
   // сбрасываем стандартное поведение формы
   evt.preventDefault();
-  const card = createCard({name: popupCardInputPlace.value, link: popupCardInputSrc.value})
+
+  const card = new Card( popupCardInputPlace.value, popupCardInputSrc.value, '#elements__items', initImageModalOpen)
   // Добавляем в DOM
- // renderCard (card)
-  cardsList.renderItems();
+  createCard(card)
+  // закрытие popup
   closeModal(popupCardAdd)
   // чистим форму
   evt.target.reset();
@@ -117,27 +122,6 @@ const cardsList = new Section({
   }, cardUlList);
 
   cardsList.renderItems();
-// function showInitialCards() {
-//   // Перебор массива с данными
-//   initialCards.forEach((dataCard) => {
-//     const cardElement = createCard(dataCard);
-//     // Добавляем в DOM
-//     renderCard (cardElement)
-//   });
-// }
-// showInitialCards();
-//
-// function createCard(data) {
-//   const cards = new Card(data.name, data.link, '#elements__items', initImageModalOpen);
-//   // Создаём карточку и возвращаем
-//   return cards.generateCard();
-// }
-
-// функция отрисовки карточки методом prepend()
-// function renderCard (node) {
-//   const cardUlList = document.querySelector(".elements__grids");
-//   cardUlList.prepend(node);
-// }
 
 // --------------------------------------------------------------------------------------------POPUP CARD IMG
 
