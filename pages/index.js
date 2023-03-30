@@ -1,6 +1,7 @@
 // --------------------------------------------IMPORTANT
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 // -------------------------------------
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close');
@@ -88,7 +89,8 @@ function handleEditCard(evt) {
   evt.preventDefault();
   const card = createCard({name: popupCardInputPlace.value, link: popupCardInputSrc.value})
   // Добавляем в DOM
-  renderCard (card)
+ // renderCard (card)
+  cardsList.renderItems();
   closeModal(popupCardAdd)
   // чистим форму
   evt.target.reset();
@@ -102,27 +104,40 @@ formCardEdit.addEventListener('click', () => openModal(popupCardAdd));
 popupCardClose.addEventListener('click', () => closeModal(popupCardAdd));
 
 // --------------------------------------------------------------------------------------------ГЕНЕРАЦИЯ ELEMENTS из TEMPLATE
-function showInitialCards() {
-  // Перебор массива с данными
-  initialCards.forEach((dataCard) => {
-    const cardElement = createCard(dataCard);
-    // Добавляем в DOM
-    renderCard (cardElement)
-  });
-}
-showInitialCards();
+const cardUlList = document.querySelector(".elements__grids");
+// Section
 
-function createCard(data) {
-  const cards = new Card(data.name, data.link, '#elements__items', initImageModalOpen);
-  // Создаём карточку и возвращаем
-  return cards.generateCard();
-}
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cards = new Card(item.name, item.link, '#elements__items', initImageModalOpen);
+    const cardElement = cards.generateCard();
+    cardsList.addItem(cardElement);
+  }
+  }, cardUlList);
+
+  cardsList.renderItems();
+// function showInitialCards() {
+//   // Перебор массива с данными
+//   initialCards.forEach((dataCard) => {
+//     const cardElement = createCard(dataCard);
+//     // Добавляем в DOM
+//     renderCard (cardElement)
+//   });
+// }
+// showInitialCards();
+//
+// function createCard(data) {
+//   const cards = new Card(data.name, data.link, '#elements__items', initImageModalOpen);
+//   // Создаём карточку и возвращаем
+//   return cards.generateCard();
+// }
 
 // функция отрисовки карточки методом prepend()
-function renderCard (node) {
-  const cardUlList = document.querySelector(".elements__grids");
-  cardUlList.prepend(node);
-}
+// function renderCard (node) {
+//   const cardUlList = document.querySelector(".elements__grids");
+//   cardUlList.prepend(node);
+// }
 
 // --------------------------------------------------------------------------------------------POPUP CARD IMG
 
