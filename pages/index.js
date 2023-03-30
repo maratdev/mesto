@@ -2,6 +2,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
 // -------------------------------------
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close');
@@ -51,7 +52,9 @@ const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
 function openProfileEdit() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileSubtitle.textContent;
-  openModal(popupProfileEdit);
+  //openModal(popupProfileEdit);
+  const openModals = new Popup(popupProfileEdit);
+  openModals.open()
 }
 
 //Обработчик «отправки» формы
