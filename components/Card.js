@@ -7,8 +7,7 @@ export default class Card {
   }
 
   _getTemplate() {
-    const newElement = document.querySelector(this._templateSelector).content.querySelector('.elements__items').cloneNode(true);
-    return newElement;
+    return document.querySelector(this._templateSelector).content.querySelector('.elements__items').cloneNode(true);
   }
 
   generateCard() {

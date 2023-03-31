@@ -6,10 +6,10 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 // -------------------------------------
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close');
-
 const popupsAll = document.querySelectorAll('.popup');
 const sectionProfile = document.querySelector('.profile')
 
@@ -40,23 +40,22 @@ const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
   jobInput = popupProfileEdit.querySelector('.form__input_string_job'),
   formEdit = popupProfileEdit.querySelector('.form_edit-user');
 
+const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
+  popupOpenEdit.close();
+});
 
-function openProfileEdit() {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileSubtitle.textContent;
-  openModal(popupProfileEdit);
-}
 
 //Обработчик «отправки» формы
-function handleProfileFormSubmit (evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
-  closeModal(popupProfileEdit);
-}
+popupOpenEdit.setEventListeners();
 
-formEdit.addEventListener('submit', handleProfileFormSubmit);
-profileEdit.addEventListener('click', () => openProfileEdit(popupProfileEdit))
+
+
+profileEdit.addEventListener("click", () => {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileSubtitle.textContent;
+  popupOpenEdit.open();
+});
+
 // обработчики крестиков
 closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап
