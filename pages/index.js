@@ -1,8 +1,11 @@
+//@TODO: Удалить ссылку с index.html
+
 // --------------------------------------------IMPORTANT
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 // -------------------------------------
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close');
@@ -116,23 +119,14 @@ const cardsList = new Section({
 
 //-------------------------------------функция для открытия модального окна по клику на картинку
 const popupImg = document.querySelector('.popup_img-card'),
-      popupCloseImg = popupImg.querySelector('.popup__close')
+      popupOpenImage = new PopupWithImage(popupImg);
 
-const popupZoomImg = popupImg.querySelector('.popup__zoom-image'),
-      popupZoomTitle = popupImg.querySelector('.popup__zoom-title')
-
-popupCloseImg.addEventListener('click', (evt) =>{
-  closeModal(popupImg)
-})
 
 //popup открытия изображения
 function initImageModalOpen(name, link){
-  openModal(popupImg);
-  popupZoomImg.src = link;
-  popupZoomImg.alt = name;
-  popupZoomTitle.textContent = name;
+  popupOpenImage.open(name, link);
 }
-
+popupOpenImage.setEventListeners();
 // -------------------------------------------------------------------------------------------- Валидация
 
 const object = {
