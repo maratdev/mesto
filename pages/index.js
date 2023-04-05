@@ -7,6 +7,7 @@ import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 // -------------------------------------
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close');
@@ -40,21 +41,26 @@ const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
   jobInput = popupProfileEdit.querySelector('.form__input_string_job'),
   formEdit = popupProfileEdit.querySelector('.form_edit-user');
 
+const userInfo = new UserInfo({
+  nameSelector: profileName,
+  jobSelector: profileSubtitle
+});
+
+profileEdit.addEventListener("click", () => {
+  popupOpenEdit.open();
+  const userInfoGet = userInfo.getUserInfo();
+  nameInput.value = userInfoGet.name;
+  jobInput.value = userInfoGet.job;
+});
+
+
 const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
+  userInfo.setUserInfo(data);
   popupOpenEdit.close();
 });
 
-
-//Обработчик «отправки» формы
 popupOpenEdit.setEventListeners();
 
-
-
-profileEdit.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileSubtitle.textContent;
-  popupOpenEdit.open();
-});
 
 // обработчики крестиков
 closeButtons.forEach((button) => {
