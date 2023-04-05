@@ -8,12 +8,14 @@
   background: center url(../../../images/profile_pencil.svg) no-repeat;
   transition: opacity 0.5s ease;
   margin-top: 5px;
+  outline: none;
 }
 
 
 .profile__edit-btn:hover{
   opacity: 0.6;
 }
+
 
 @media (max-width: 375px) {
   .profile__edit-btn{
