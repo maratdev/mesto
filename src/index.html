@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="портфолио Закарьяева Марата на Яндекс Практикуме">
@@ -12,11 +11,11 @@
 </head>
 <body class="page">
   <header class="header page__header">
-    <img class="header__logo" src="images/logo.svg" alt="логотип Mesto">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="логотип Mesto">
   </header>
   <main>
     <section class="profile page__profile">
-      <img class="profile__avatar" src="images/avatar.jpg" alt="Аватарка">
+      <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button aria-label="Редактировать профиль" type="button" class="profile__edit-btn"></button>
@@ -59,7 +58,7 @@
       <form class="form form_add-card" name="popup__form-add-card" novalidate>
           <input id="image-input" class="form__input form__input_string_place" type="text" name="card_name" placeholder="Название"  maxlength="30" minlength="2" required>
            <span class="form__span-error image-input-error"></span>
-          <input id="src-input" class="form__input form__input_string_src" type="url" name="card_src" value="https://source.unsplash.com/collection/220381/"  placeholder="Ссылка на картинку" required>
+          <input id="src-input" class="form__input form__input_string_src" type="url" name="card_src" placeholder="Ссылка на картинку" required>
             <span class="form__span-error src-input-error"></span>
           <button class="form__input-btn form__input-btn_disabled" type="submit" disabled >Создать</button>
       </form>
@@ -87,9 +86,5 @@
       </article>
     </li>
   </template>
-  <!----------------------------------------------------->
-
-  <script defer src="components/data.js"></script>
-  <script defer type="module" src="pages/index.js"></script>
 </body>
 </html>

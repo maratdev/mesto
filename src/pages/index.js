@@ -1,5 +1,4 @@
-//@TODO: Удалить ссылку с index.html
-
+import './index.css';
 // --------------------------------------------IMPORTANT
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -8,6 +7,8 @@ import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import { initialCards, object } from '../utils/constants.js';
+
 // -------------------------------------
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close');
@@ -133,15 +134,6 @@ function handleCardClick(name, link){
 }
 popupOpenImage.setEventListeners();
 // -------------------------------------------------------------------------------------------- Валидация
-
-const object = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitSelector: '.form__input-btn',
-  disabledButtonClass: 'form__input-btn_disabled',
-  errorClass: 'form__span-error',
-  inputErrorClass: 'form__input-error',
-};
 
 const validPopupEditForm = new FormValidator(object, popupProfileEdit);
 validPopupEditForm.enableValidation();
