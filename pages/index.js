@@ -89,7 +89,7 @@ function handleEditCard(evt) {
   // сбрасываем стандартное поведение формы
   evt.preventDefault();
 
-  const card = new Card( popupCardInputPlace.value, popupCardInputSrc.value, '#elements__items', initImageModalOpen)
+  const card = new Card( popupCardInputPlace.value, popupCardInputSrc.value, '#elements__items', handleCardClick)
   // Добавляем в DOM
   createCard(card)
   // закрытие popup
@@ -112,7 +112,7 @@ const cardUlList = document.querySelector(".elements__grids");
 const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const cards = new Card(item.name, item.link, '#elements__items', initImageModalOpen);
+    const cards = new Card(item.name, item.link, '#elements__items', handleCardClick);
     const cardElement = cards.generateCard();
     cardsList.addItem(cardElement);
   }
@@ -128,7 +128,7 @@ const popupImg = document.querySelector('.popup_img-card'),
 
 
 //popup открытия изображения
-function initImageModalOpen(name, link){
+function handleCardClick(name, link){
   popupOpenImage.open(name, link);
 }
 popupOpenImage.setEventListeners();
