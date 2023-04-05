@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(name, link, templateSelector, initImageModalOpen) {
+  constructor(name, link, templateSelector, handleCardClick) {
     this._templateSelector = templateSelector;
     this._name = name;
     this._link = link;
-    this._initImageModalOpen = initImageModalOpen;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -28,7 +28,7 @@ export default class Card {
 
   _setEventListeners() {
     // Открыть картинку elements -> card
-    this._cardImage.addEventListener("click", () => this._handleImageClick());
+    this._cardImage.addEventListener("click", () => this._handleCardClick(this._name, this._link));
    // Удалить карточку elements -> card
     this._element.querySelector(".card__trash").addEventListener("click", () => this._deleteCard());
     // Лайк карточки elements -> card
@@ -44,9 +44,9 @@ export default class Card {
     this._element.remove();
   }
 
-  _handleImageClick(){
-    this._initImageModalOpen(this._name, this._link);
-
-  }
+  // _handleImageClick(){
+  //   this._initImageModalOpen(this._name, this._link);
+  //
+  // }
 
 }
