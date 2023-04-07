@@ -16,9 +16,6 @@
 
 ## 🛠️ Стэк:
 
---------------------------
-
-
 - HTML5
 - CSS3
 - [BEM Nested](https://ru.bem.info/methodology/filestructure/)

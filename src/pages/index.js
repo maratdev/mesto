@@ -11,26 +11,8 @@ import { initialCards, object } from '../utils/constants.js';
 
 // -------------------------------------
 // находим все крестики проекта по универсальному селектору
-const closeButtons = document.querySelectorAll('.popup__close');
-const popupsAll = document.querySelectorAll('.popup');
 const sectionProfile = document.querySelector('.profile')
 
-// Функция открытия модальных окон
-const openModal = (popupName) => {
-  const openModal = new PopupWithForm(popupName);
-  openModal.open()
-}
-// Функция закрывания модальных окон при клике X
-const closeModal = (popupName) =>  {
-  const closeModal = new PopupWithImage(popupName);
-  closeModal.setEventListeners();
-}
-
-// Функция закрывания модальных окон при клике вне его
-popupsAll.forEach((overlayPopup) => {
-  const popup = new Popup(overlayPopup);
-  popup.setEventListeners();
-});
 
 // -------------------------------------------------------------------------------------------- POPUP редактирования профиля
 const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
@@ -59,33 +41,27 @@ const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
 });
 popupOpenEdit.setEventListeners();
 
-// обработчики крестиков
-closeButtons.forEach((button) => {
-  // находим 1 раз ближайший к крестику попап
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closeModal(popup));
-});
-
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   // форма в popup_add-card
   popupCardAdd = document.querySelector('.popup_add-card'),
-  popupCardClose = popupCardAdd.querySelector('.popup__close'),
   popupCardInputPlace = popupCardAdd.querySelector('.form__input_string_place'),
   popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src');
 
 
 
-function createCard(item) {
-  const cards = new Card(item.name, item.link, '#elements__items', handleCardClick);
+function createCard(data) {
+  console.log(data);
+  const cards = new Card(data, '#elements__items', handleCardClick);
   const cardElement = cards.generateCard();
   return cardsList.addItem(cardElement);
 }
 
 //функция-обработчик
 const handleEditCard = new PopupWithForm(popupCardAdd, (data) => {
-  createCard({name: popupCardInputPlace.value, link: popupCardInputSrc.value})
+  console.log(data);
+  createCard({name: data.card_name, link: data.card_src});
   handleEditCard.close();
   validPopupCardForm.resetValidation();
 });
@@ -93,8 +69,9 @@ handleEditCard.setEventListeners();
 // для отладки https://source.unsplash.com/collection/220381/
 
 // слушаем события
-formCardEdit.addEventListener('click', () => openModal(popupCardAdd));
-popupCardClose.addEventListener('click', () => closeModal(popupCardAdd));
+formCardEdit.addEventListener("click", () => {
+  handleEditCard.open();
+});
 
 // --------------------------------------------------------------------------------------------ГЕНЕРАЦИЯ ELEMENTS из TEMPLATE
 const cardUlList = document.querySelector(".elements__grids");
@@ -102,10 +79,8 @@ const cardUlList = document.querySelector(".elements__grids");
 // Section
 const cardsList = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const cards = new Card(item.name, item.link, '#elements__items', handleCardClick);
-    const cardElement = cards.generateCard();
-    cardsList.addItem(cardElement);
+  renderer: (data) => {
+    createCard(data)
   }
   }, cardUlList);
 
