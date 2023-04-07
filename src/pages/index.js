@@ -9,12 +9,8 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, object } from '../utils/constants.js';
 
-// -------------------------------------
-// находим все крестики проекта по универсальному селектору
-const sectionProfile = document.querySelector('.profile')
-
-
 // -------------------------------------------------------------------------------------------- POPUP редактирования профиля
+const sectionProfile = document.querySelector('.profile')
 const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
   profileName = sectionProfile.querySelector('.profile__name'),
   profileSubtitle = sectionProfile.querySelector('.profile__subtitle'),
@@ -45,22 +41,16 @@ popupOpenEdit.setEventListeners();
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   // форма в popup_add-card
-  popupCardAdd = document.querySelector('.popup_add-card'),
-  popupCardInputPlace = popupCardAdd.querySelector('.form__input_string_place'),
-  popupCardInputSrc = popupCardAdd.querySelector('.form__input_string_src');
-
-
+  popupCardAdd = document.querySelector('.popup_add-card');
 
 function createCard(data) {
-  console.log(data);
-  const cards = new Card(data, '#elements__items', handleCardClick);
-  const cardElement = cards.generateCard();
+  const cards = new Card(data, '#elements__items', handleCardClick),
+        cardElement = cards.generateCard();
   return cardsList.addItem(cardElement);
 }
 
 //функция-обработчик
 const handleEditCard = new PopupWithForm(popupCardAdd, (data) => {
-  console.log(data);
   createCard({name: data.card_name, link: data.card_src});
   handleEditCard.close();
   validPopupCardForm.resetValidation();
