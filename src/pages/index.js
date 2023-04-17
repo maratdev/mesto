@@ -1,13 +1,13 @@
 import './index.css';
 // --------------------------------------------IMPORTANT
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import { initialCards, object } from '../utils/constants.js';
+import {initialCards, object} from '../utils/constants.js';
 
 // -------------------------------------------------------------------------------------------- POPUP редактирования профиля
 const sectionProfile = document.querySelector('.profile')
@@ -65,16 +65,27 @@ formCardEdit.addEventListener("click", () => {
 
 // --------------------------------------------------------------------------------------------ГЕНЕРАЦИЯ ELEMENTS из TEMPLATE
 const cardUlList = document.querySelector(".elements__grids");
+//Section
+const cardsList = new Section({renderer: (data) => createCard(data)}, cardUlList);
 
-// Section
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (data) => {
-    createCard(data)
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64/cards',
+  headers: {
+    authorization: '145c396a-49e7-4abb-9010-fec05cae083b',
+    'Content-Type': 'application/json;  character=UTF-8',
   }
-  }, cardUlList);
+})
 
-  cardsList.renderItems();
+Promise.all([api.getDataUser(), api.getInitialCards()])
+  .then((result) => {
+    const [userData, initialCards] = result;
+    console.log(result);
+    cardsList.renderItems(initialCards);
+  })
+  .catch(error => console.error(error.message))
+
+
+
 
 // --------------------------------------------------------------------------------------------POPUP CARD IMG
 

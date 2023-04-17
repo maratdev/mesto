@@ -7,13 +7,13 @@
 - [x] Animation and Transform
 - [x] Оптимизация шрифтов
 - [x] Редактировать свой профиль
-- [x] Ставить лайки
+- [x] Ставить лайки и вывод количества лайков
 - [x] Добавлять новые карточки с фото
 - [x] Удалять карточки
 - [x] Popup
 - [x] Валидация всех форм
-- [ ] Менять аватарку
-- [ ] API
+- [x] Менять аватарку
+- [x] API
 - [ ] Регистрация, авторизация и аутентификация
 
 ## 🛠️ Стэк:
@@ -28,15 +28,15 @@
 - ООП, Классовый JS
 - Git
 - Webpack
-- Npm
+- NPM
 
 * * *
 
 **🧩 Брифы:**
-* [Figma 9-го спринта](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
+* [Figma 9-го спринта](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript.-Sprint-9)
 
 **📄 Чеклисты:**
-* [Чеклист 9-го спринта](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-8.pdf)
+* [Чеклист 9-го спринта](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-9.pdf)
 
 **🌐 Проект на GitHub Pages:**
 * [gh-pages](https://maratdev.github.io/mesto/)
