@@ -7,7 +7,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import {initialCards, object} from '../utils/constants.js';
+import {object} from '../utils/constants.js';
 
 // -------------------------------------------------------------------------------------------- POPUP редактирования профиля
 const sectionProfile = document.querySelector('.profile')
@@ -69,7 +69,7 @@ const cardUlList = document.querySelector(".elements__grids");
 const cardsList = new Section({renderer: (data) => createCard(data)}, cardUlList);
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64/cards',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
   headers: {
     authorization: '145c396a-49e7-4abb-9010-fec05cae083b',
     'Content-Type': 'application/json;  character=UTF-8',
@@ -79,8 +79,9 @@ const api = new Api({
 Promise.all([api.getDataUser(), api.getInitialCards()])
   .then((result) => {
     const [userData, initialCards] = result;
-    console.log(result);
+    //console.log(userData);
     cardsList.renderItems(initialCards);
+    userInfo.setUserInfo({ name: userData.name, job: userData.about});
   })
   .catch(error => console.error(error.message))
 
