@@ -6,6 +6,7 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirm from "../components/PopupWithConfirm";
 import UserInfo from "../components/UserInfo.js";
 import {object} from '../utils/constants.js';
 
@@ -32,10 +33,27 @@ profileEdit.addEventListener("click", () => {
 });
 
 const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
-  userInfo.setUserInfo(data);
-  popupOpenEdit.close();
+  api.saveDataInfo(data)
+    .then((result) => {
+      userInfo.setUserInfo({ name: result.name, job: result.about });
+      popupOpenEdit.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupOpenEdit.close();
+    });
+
 });
 popupOpenEdit.setEventListeners();
+
+// -------------------------------------------------------------------------------------------- POPUP УДАЛЕНИЯ КАРТОЧКИ
+const popupDelCard = document.querySelector('.popup_del-card'),
+      popupConfirm = new PopupWithConfirm(popupDelCard);
+
+//popup подтверждения удаления карточки
+popupConfirm.setEventListeners();
 
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
@@ -44,16 +62,45 @@ const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   popupCardAdd = document.querySelector('.popup_add-card');
 
 function createCard(data) {
-  const cards = new Card(data, '#elements__items', handleCardClick),
-        cardElement = cards.generateCard();
+  const cards = new Card(data, '#elements__items', handleCardClick, {
+    handleCardDelete: () => {
+      const sendCard = () => {
+        api.deleteCard(cards.cardId)
+          .then(() => {
+            cards.deleteCard();
+            popupConfirm.close();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+
+      popupConfirm.open();
+      popupConfirm.setCallbackConfirm(sendCard);
+
+    }
+
+    }),
+
+  cardElement = cards.generateCard();
   return cardsList.addItem(cardElement);
 }
 
 //функция-обработчик
 const handleEditCard = new PopupWithForm(popupCardAdd, (data) => {
-  createCard({name: data.card_name, link: data.card_src});
-  handleEditCard.close();
-  validPopupCardForm.resetValidation();
+  api.saveCardInfo(data)
+    .then((result) => {
+      createCard(result);
+      popupOpenEdit.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      handleEditCard.close();
+      validPopupCardForm.resetValidation();
+    });
+
 });
 handleEditCard.setEventListeners();
 // для отладки https://source.unsplash.com/collection/220381/
@@ -77,9 +124,10 @@ const api = new Api({
 })
 
 Promise.all([api.getDataUser(), api.getInitialCards()])
+
   .then((result) => {
     const [userData, initialCards] = result;
-    //console.log(userData);
+    //console.log(initialCards);
     cardsList.renderItems(initialCards);
     userInfo.setUserInfo({ name: userData.name, job: userData.about});
   })
@@ -107,5 +155,4 @@ validPopupEditForm.submitFalse();
 
 const validPopupCardForm = new FormValidator(object, popupCardAdd);
 validPopupCardForm.enableValidation();
-
 

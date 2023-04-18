@@ -48,12 +48,16 @@
 @import url(../blocks/card/__trash/card__trash.css);
 /*------------elements --> ul --> li --> article --> div */
 @import url(../blocks/card/__desc/card__desc.css);
-/*------------elements --> ul --> li --> article --> h3 */
+/*------------elements --> ul --> li --> article --> div --> h2 */
 @import url(../blocks/card/__title/card__title.css);
-/*------------elements --> ul --> li --> article --> button */
+/*------------elements --> ul --> li --> article --> div --> button */
 @import url(../blocks/card/__like/card__like.css);
-/*------------elements --> ul --> li --> article --> button.active */
+/*------------elements --> ul --> li --> article --> div --> div.card__place */
+@import url(../blocks/card/__place/card__place.css);
+/*------------elements --> ul --> li --> article --> div --> button.active */
 @import url(../blocks/card/__like/_active/card__like_active.css);
+/*------------elements --> ul --> li --> article --> div --> p */
+@import url(../blocks/card/__like-count/card__like-count.css);
 
 /*------------------------------------------------FOOTER*/
 @import url(../blocks/footer/footer.css);
@@ -95,3 +99,4 @@
 /*------------div.popup --> form --> fieldset --> input.button.disabled */
 @import url(../blocks/form/__input-btn/_disabled/form__input-btn_disabled.css);
 @import url(../blocks/form/__input/_error/form__input_error.css);
+@import url(../blocks/form/__del-btn/form__del-btn.css);
