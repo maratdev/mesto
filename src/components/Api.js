@@ -28,9 +28,8 @@ export default class Api {
       .then(this._getResponseData);
   }
 
-
   saveCardInfo(cardInfo) {
-    console.log('API:' + cardInfo)
+//    console.log('API:' + cardInfo)
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: 'POST',
@@ -42,11 +41,8 @@ export default class Api {
       .then(this._getResponseData);
   }
 
-  getLikes() {
-    return fetch(`${this._baseUrl}/likes`, { headers: this._headers }).then(this._getResponseData);
-  }
-
   deleteCard(cardId) {
+   //console.log('API:' + cardId)
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       headers: this._headers,
       method: 'DELETE',

@@ -1,11 +1,14 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, { handleCardDelete }) {
+  constructor(data, templateSelector, handleCardClick, userId, { handleCardDelete }) {
+   // console.log('Card:'+ userId)
     this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
-    this.cardId = data._id;
 
+    this.cardId = data._id;
+    this._userId = userId;
+    this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
    // this._handleAddLike = handleAddLike;
@@ -28,7 +31,12 @@ export default class Card {
     // Количество лайков
     this._countLikes = this._element.querySelector(".card__like-count");
     this._countLikes.textContent = this._likes.length;
-  // Количество лайков
+    //Удаление карточки
+    //b1bb5fb60a768aef92a1820e
+    //console.log('Card:'+ '_userID ' + this._userId, '_ownerId ' + this._ownerId)
+    if (this._userId === this._ownerId) {
+      this._element.querySelector(".card__trash").classList.add('card_trash_visible');
+    }
 
     this._setEventListeners();
     // Вернём элемент наружу

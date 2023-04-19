@@ -46,6 +46,8 @@
 @import url(../blocks/card/__item/card__item.css);
 /*------------elements --> ul --> li --> article --> images.trash */
 @import url(../blocks/card/__trash/card__trash.css);
+/*------------elements --> ul --> li --> article --> images.trash  ~ card_trash_visible */
+@import url(../blocks/card/__trash/_visible/card_trash_visible.css);
 /*------------elements --> ul --> li --> article --> div */
 @import url(../blocks/card/__desc/card__desc.css);
 /*------------elements --> ul --> li --> article --> div --> h2 */

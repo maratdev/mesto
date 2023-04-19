@@ -62,7 +62,8 @@ const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
   popupCardAdd = document.querySelector('.popup_add-card');
 
 function createCard(data) {
-  const cards = new Card(data, '#elements__items', handleCardClick, {
+  const userData = userInfo.getUserInfo();
+  const cards = new Card(data, '#elements__items', handleCardClick, userId,{
     handleCardDelete: () => {
       const sendCard = () => {
         api.deleteCard(cards.cardId)
@@ -74,10 +75,8 @@ function createCard(data) {
             console.log(err);
           });
       };
-
       popupConfirm.open();
       popupConfirm.setCallbackConfirm(sendCard);
-
     }
 
     }),
@@ -122,12 +121,12 @@ const api = new Api({
     'Content-Type': 'application/json;  character=UTF-8',
   }
 })
-
+let userId;
 Promise.all([api.getDataUser(), api.getInitialCards()])
-
   .then((result) => {
-    const [userData, initialCards] = result;
-    //console.log(initialCards);
+    const [userData, initialCards, ] = result;
+    userId = userData._id
+    console.log('index.js -> userId: ' + userId);
     cardsList.renderItems(initialCards);
     userInfo.setUserInfo({ name: userData.name, job: userData.about});
   })
