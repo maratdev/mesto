@@ -33,15 +33,16 @@ profileEdit.addEventListener("click", () => {
 });
 
 const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
+  popupOpenEdit.submitProcess("Сохранение...");
   api.saveDataInfo(data)
     .then((result) => {
       userInfo.setUserInfo({ name: result.name, job: result.about });
-      popupOpenEdit.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
+      popupOpenEdit.submitProcess('Создать');
       popupOpenEdit.close();
     });
 
@@ -57,12 +58,11 @@ popupConfirm.setEventListeners();
 
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
-const formCardEdit = sectionProfile.querySelector('.profile__add-btn'),
+const formCardEdit = sectionProfile.querySelector('.profile__add-btn');
   // форма в popup_add-card
-  popupCardAdd = document.querySelector('.popup_add-card');
+
 
 function createCard(data) {
-  const userData = userInfo.getUserInfo();
   const cards = new Card(data, '#elements__items', handleCardClick, userId,{
     handleCardDelete: () => {
       const sendCard = () => {
@@ -103,12 +103,13 @@ function createCard(data) {
   return cardsList.addItem(cardElement);
 }
 
+const popupCardAdd = document.querySelector('.popup_add-card');
 //функция-обработчик
 const handleEditCard = new PopupWithForm(popupCardAdd, (data) => {
+  handleEditCard.submitProcess("Сохранение...");
   api.saveCardInfo(data)
     .then((result) => {
       createCard(result);
-      popupOpenEdit.close();
     })
     .catch((err) => {
       console.log(err);
@@ -116,6 +117,7 @@ const handleEditCard = new PopupWithForm(popupCardAdd, (data) => {
     .finally(() => {
       handleEditCard.close();
       validPopupCardForm.resetValidation();
+      handleEditCard.submitProcess("Создать");
     });
 
 });
@@ -146,15 +148,13 @@ Promise.all([api.getDataUser(), api.getInitialCards()])
     userId = userData._id
     //console.log('index.js -> userId: ' + userId);
     cardsList.renderItems(initialCards);
-    userInfo.setUserInfo({ name: userData.name, job: userData.about});
+    userInfo.setUserInfo({ name: userData.name, job: userData.about, userId: userData._id});
+    userInfo.setUserAvatar(userData.avatar);
   })
   .catch(error => console.error(error.message))
 
 
-
-
 // --------------------------------------------------------------------------------------------POPUP CARD IMG
-
 //функция для открытия модального окна по клику на картинку
 const popupImg = document.querySelector('.popup_img-card'),
       popupOpenImage = new PopupWithImage(popupImg);
@@ -164,6 +164,34 @@ function handleCardClick(name, link){
   popupOpenImage.open(name, link);
 }
 popupOpenImage.setEventListeners();
+
+// --------------------------------------------------------------------------------------------POPUP UPDATE AVATAR
+const profileAvaBtn = document.querySelector('.profile__avatar-btn');
+
+profileAvaBtn.addEventListener("click", () => {
+  popupUpdateAvatar.open();
+});
+
+
+const popupUpdAvatar = document.querySelector('.popup_upd-avatar'),
+      popupUpdateAvatar = new PopupWithForm(popupUpdAvatar, (data) => {
+        popupUpdateAvatar.submitProcess("Сохранение...");
+        api.saveDataProfile(data)
+          .then((result) => {
+            userInfo.setUserAvatar(result.avatar);
+            popupUpdateAvatar.close();
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            popupUpdateAvatar.submitProcess("Сохранить");
+          });
+      });
+
+popupUpdateAvatar.setEventListeners();
+
+
 // -------------------------------------------------------------------------------------------- Валидация
 
 const validPopupEditForm = new FormValidator(object, popupProfileEdit);
@@ -172,4 +200,8 @@ validPopupEditForm.submitFalse();
 
 const validPopupCardForm = new FormValidator(object, popupCardAdd);
 validPopupCardForm.enableValidation();
+
+const validPopupAvatarForm = new FormValidator(object, popupUpdAvatar);
+validPopupAvatarForm.enableValidation();
+
 

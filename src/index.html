@@ -18,7 +18,10 @@
   </header>
   <main>
     <section class="profile page__profile">
-      <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка">
+      <button class="profile__avatar-btn" type="button">
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка">
+      </button>
+
       <div class="profile__info">
         <h1 class="profile__name"></h1>
         <button aria-label="Редактировать профиль" type="button" class="profile__edit-btn"></button>
@@ -62,7 +65,7 @@
       <form class="form form_add-card" name="popup__form-add-card" novalidate>
           <input id="image-input" class="form__input form__input_string_place" type="text" name="card_name" placeholder="Название"  maxlength="30" minlength="2" required>
            <span class="form__span-error image-input-error"></span>
-          <input id="src-input" class="form__input form__input_string_src" type="url" value="https://source.unsplash.com/collection/220381/"  name="card_src" placeholder="Ссылка на картинку" required>
+          <input id="src-input" class="form__input form__input_string_src" type="url" value="https://picsum.photos/id/1080/720"  name="card_src" placeholder="Ссылка на картинку" required>
             <span class="form__span-error src-input-error"></span>
           <button class="form__input-btn form__input-btn_disabled" type="submit" disabled >Создать</button>
       </form>
@@ -85,6 +88,20 @@
 
       <form class="form " name="popup__form-del-card" novalidate>
         <button class="form__input-btn form__del-btn" type="submit">Да</button>
+      </form>
+    </div>
+  </div>
+
+  <!--  Popup редактирования аватарки-->
+  <div class="popup popup_upd-avatar">
+    <div class="popup__container">
+      <button type="button" class="popup__close" aria-label="Закрыть Popup"></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="form " name="popup__form-upd-avatar" novalidate>
+                                                                                   <!-- value для отладки -->
+      <input id="upd-input" class="form__input form__avatar_update" type="url"  value="https://i.pravatar.cc/300"   name="updInput" placeholder="Ссылка на картинку" required>
+          <span class="form__span-error upd-input-error"></span>
+        <button class="form__input-btn" type="submit">Сохранить</button>
       </form>
     </div>
   </div>

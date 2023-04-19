@@ -66,4 +66,13 @@ export default class Api {
       .then(this._getResponseData);
   }
 
+  saveDataProfile(profileAvatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      headers: this._headers,
+      method: 'PATCH',
+      body: JSON.stringify({ avatar: profileAvatar.updInput })
+    })
+      .then(this._getResponseData);
+  }
+
 }

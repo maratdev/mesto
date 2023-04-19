@@ -1,5 +1,6 @@
 .form__input-btn{
-  width: 100%;
+  max-width: 100%;
+  width: clamp(128px,50vw,358px);
   padding: 14px 0 15px;
   background-color: #000;
   color: #fff;
