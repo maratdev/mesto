@@ -77,8 +77,26 @@ function createCard(data) {
       };
       popupConfirm.open();
       popupConfirm.setCallbackConfirm(sendCard);
-    }
-
+    },
+      handleAddLike: () => {
+        api.addLike(cards.cardId)
+          .then((result) => {
+            console.log(result);
+            cards.switchLikes(result.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      handleDeleteLike: () => {
+        api.deleteLike(cards.cardId)
+          .then((result) => {
+            cards.switchLikes(result.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
     }),
 
   cardElement = cards.generateCard();
@@ -126,7 +144,7 @@ Promise.all([api.getDataUser(), api.getInitialCards()])
   .then((result) => {
     const [userData, initialCards, ] = result;
     userId = userData._id
-    console.log('index.js -> userId: ' + userId);
+    //console.log('index.js -> userId: ' + userId);
     cardsList.renderItems(initialCards);
     userInfo.setUserInfo({ name: userData.name, job: userData.about});
   })
