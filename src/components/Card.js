@@ -51,14 +51,8 @@ export default class Card {
    // Удалить карточку elements -> card
     this._element.querySelector(".card__trash").addEventListener("click", () => this._handleCardDelete());
     // Лайк карточки elements -> card
-    this._likeButton.addEventListener("click", () => {
-      if(this.isLiked()) {
-        this._handleDeleteLike();
-      } else {
-        this._handleAddLike();
-      }
-    });
-
+    this._likeButton.addEventListener("click", () => this.isLiked() ? this._handleDeleteLike() : this._handleAddLike()
+    );
   };
 
   deleteCard(){
@@ -85,11 +79,7 @@ export default class Card {
 
   toggleLikeState() {
     this._countLikes.textContent = this._likes.length;
-    if(this.isLiked()) {
-      this.setLikes();
-    } else {
-      this.deleteLikes();
-    }
+      this.isLiked() ? this.setLikes() : this.deleteLikes()
   }
 
 

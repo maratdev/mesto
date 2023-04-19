@@ -35,12 +35,8 @@ profileEdit.addEventListener("click", () => {
 const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
   popupOpenEdit.submitProcess("Сохранение...");
   api.saveDataInfo(data)
-    .then((result) => {
-      userInfo.setUserInfo({ name: result.name, job: result.about });
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    .then((result) => userInfo.setUserInfo({ name: result.name, job: result.about }))
+    .catch((err) => console.log(err))
     .finally(() => {
       popupOpenEdit.submitProcess('Создать');
       popupOpenEdit.close();
@@ -61,7 +57,6 @@ popupConfirm.setEventListeners();
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn');
   // форма в popup_add-card
 
-
 function createCard(data) {
   const cards = new Card(data, '#elements__items', handleCardClick, userId,{
     handleCardDelete: () => {
@@ -71,31 +66,21 @@ function createCard(data) {
             cards.deleteCard();
             popupConfirm.close();
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch((err) => console.log(err));
       };
       popupConfirm.open();
       popupConfirm.setCallbackConfirm(sendCard);
     },
       handleAddLike: () => {
         api.addLike(cards.cardId)
-          .then((result) => {
-            console.log(result);
-            cards.switchLikes(result.likes);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+          .then((result) => cards.switchLikes(result.likes))
+          .catch((err) => console.log(err));
       },
       handleDeleteLike: () => {
         api.deleteLike(cards.cardId)
-          .then((result) => {
-            cards.switchLikes(result.likes);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+          .then((result) => cards.switchLikes(result.likes))
+          .catch((err) => console.log(err)
+          );
       },
     }),
 
@@ -108,12 +93,8 @@ const popupCardAdd = document.querySelector('.popup_add-card');
 const handleEditCard = new PopupWithForm(popupCardAdd, (data) => {
   handleEditCard.submitProcess("Сохранение...");
   api.saveCardInfo(data)
-    .then((result) => {
-      createCard(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    .then((result) => createCard(result))
+    .catch((err) => console.log(err))
     .finally(() => {
       handleEditCard.close();
       validPopupCardForm.resetValidation();
@@ -125,9 +106,7 @@ handleEditCard.setEventListeners();
 // для отладки https://source.unsplash.com/collection/220381/
 
 // слушаем события
-formCardEdit.addEventListener("click", () => {
-  handleEditCard.open();
-});
+formCardEdit.addEventListener("click", () => handleEditCard.open());
 
 // --------------------------------------------------------------------------------------------ГЕНЕРАЦИЯ ELEMENTS из TEMPLATE
 const cardUlList = document.querySelector(".elements__grids");
@@ -167,11 +146,7 @@ popupOpenImage.setEventListeners();
 
 // --------------------------------------------------------------------------------------------POPUP UPDATE AVATAR
 const profileAvaBtn = document.querySelector('.profile__avatar-btn');
-
-profileAvaBtn.addEventListener("click", () => {
-  popupUpdateAvatar.open();
-});
-
+      profileAvaBtn.addEventListener("click", () => popupUpdateAvatar.open());
 
 const popupUpdAvatar = document.querySelector('.popup_upd-avatar'),
       popupUpdateAvatar = new PopupWithForm(popupUpdAvatar, (data) => {
@@ -181,15 +156,10 @@ const popupUpdAvatar = document.querySelector('.popup_upd-avatar'),
             userInfo.setUserAvatar(result.avatar);
             popupUpdateAvatar.close();
           })
-          .catch((err) => {
-            console.log(err);
-          })
-          .finally(() => {
-            popupUpdateAvatar.submitProcess("Сохранить");
-          });
+          .catch((err) => console.log(err))
+          .finally(() => popupUpdateAvatar.submitProcess("Сохранить"));
       });
-
-popupUpdateAvatar.setEventListeners();
+    popupUpdateAvatar.setEventListeners();
 
 
 // -------------------------------------------------------------------------------------------- Валидация
