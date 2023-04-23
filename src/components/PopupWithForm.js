@@ -32,10 +32,6 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  submitProcess(process) {
-    this._submitButton.textContent = process;
-  }
-
   close() {
     super.close();
     this._form.reset();
