@@ -25,13 +25,6 @@ const userInfo = new UserInfo({
   jobSelector: profileSubtitle
 });
 
-profileEdit.addEventListener("click", () => {
-  popupOpenEdit.open();
-  const userInfoGet = userInfo.getUserInfo();
-  nameInput.value = userInfoGet.name;
-  jobInput.value = userInfoGet.job;
-});
-
 
 const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
   return api.saveDataInfo(data)
@@ -43,6 +36,12 @@ const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
 
 });
 popupOpenEdit.setEventListeners();
+
+profileEdit.addEventListener("click", () => {
+  popupOpenEdit.open();
+  const userInfoGet = userInfo.getUserInfo();
+  popupOpenEdit.setInputValues(userInfoGet);
+});
 
 // -------------------------------------------------------------------------------------------- POPUP УДАЛЕНИЯ КАРТОЧКИ
 const popupDelCard = document.querySelector('.popup_del-card'),

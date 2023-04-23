@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup {
     this._callbackSubmit = callbackSubmit;
     this._form = this._selector.querySelector(".form");
     this._inputs = Array.from(this._form.querySelectorAll(".form__input"));
+    this._inputList = this._form.querySelectorAll(".form__input");
     this._submitButton = this._form.querySelector(".form__input-btn");
   }
 
@@ -31,6 +32,15 @@ export default class PopupWithForm extends Popup {
         }) // в любом случае меняется текст кнопки обратно на начальный в `finally`
     });
   }
+
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
+
+  }
+
+
 
   close() {
     super.close();
