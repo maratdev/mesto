@@ -51,8 +51,8 @@ const popupDelCard = document.querySelector('.popup_del-card'),
   popupConfirm = (message) => {
     //popup подтверждения удаления карточки
     const sendConfirm = new PopupWithForm(popupDelCard , message);
-    sendConfirm.setEventListeners();
     sendConfirm.open();
+    sendConfirm.setEventListeners();
 }
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
@@ -66,7 +66,6 @@ function createCard(data) {
         return api.deleteCard(cards.cardId)
           .then(() => {
             cards.deleteCard();
-            popupConfirm.close();
           })
           .catch((err) => console.log(err));
       }
