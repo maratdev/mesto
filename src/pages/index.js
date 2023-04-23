@@ -15,9 +15,7 @@ const profileEdit = sectionProfile.querySelector('.profile__edit-btn'),
   profileName = sectionProfile.querySelector('.profile__name'),
   profileSubtitle = sectionProfile.querySelector('.profile__subtitle'),
   // форма в popup_edit-user
-  popupProfileEdit = document.querySelector('.popup_edit-user'),
-  nameInput = popupProfileEdit.querySelector('.form__input_string_name'),
-  jobInput = popupProfileEdit.querySelector('.form__input_string_job');
+  popupProfileEdit = document.querySelector('.popup_edit-user');
 
 const userInfo = new UserInfo({
   nameSelector: profileName,
