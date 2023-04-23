@@ -5,7 +5,10 @@ export default class Api {
   }
 
   _getResponseData(res) {
-    return res.ok ? res.json() : `Error ${res.status}`;
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}`);
   }
 
   getInitialCards() {

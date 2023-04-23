@@ -32,13 +32,12 @@ profileEdit.addEventListener("click", () => {
   jobInput.value = userInfoGet.job;
 });
 
+
 const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
-  popupOpenEdit.submitProcess("Сохранение...");
-  api.saveDataInfo(data)
+  return api.saveDataInfo(data)
     .then((result) => userInfo.setUserInfo({ name: result.name, job: result.about }))
     .catch((err) => console.log(err))
     .finally(() => {
-      popupOpenEdit.submitProcess('Создать');
       popupOpenEdit.close();
     });
 
@@ -91,14 +90,12 @@ function createCard(data) {
 const popupCardAdd = document.querySelector('.popup_add-card');
 //функция-обработчик
 const handleEditCard = new PopupWithForm(popupCardAdd, (data) => {
-  handleEditCard.submitProcess("Сохранение...");
-  api.saveCardInfo(data)
+  return api.saveCardInfo(data)
     .then((result) => createCard(result))
     .catch((err) => console.log(err))
     .finally(() => {
       handleEditCard.close();
       validPopupCardForm.resetValidation();
-      handleEditCard.submitProcess("Создать");
     });
 
 });
@@ -150,14 +147,12 @@ const profileAvaBtn = document.querySelector('.profile__avatar-btn');
 
 const popupUpdAvatar = document.querySelector('.popup_upd-avatar'),
       popupUpdateAvatar = new PopupWithForm(popupUpdAvatar, (data) => {
-        popupUpdateAvatar.submitProcess("Сохранение...");
-        api.saveDataProfile(data)
+       return api.saveDataProfile(data)
           .then((result) => {
             userInfo.setUserAvatar(result.avatar);
             popupUpdateAvatar.close();
           })
           .catch((err) => console.log(err))
-          .finally(() => popupUpdateAvatar.submitProcess("Сохранить"));
       });
     popupUpdateAvatar.setEventListeners();
 
