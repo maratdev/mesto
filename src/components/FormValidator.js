@@ -15,8 +15,8 @@ export default class FormValidator {
     // находим элемент ошибки внутри самой функции
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
-    errorElement.textContent = errorMessage; // Показываем сообщение об ошибке
     errorElement.classList.add(this._errorClass); // Замена содержимого span с ошибкой на переданный параметр
+    errorElement.textContent = errorMessage; // Показываем сообщение об ошибке
   }
 
   // Удаляем класс с ошибкой
@@ -79,7 +79,7 @@ _setEventListeners(){
   });
 
 };
-  enableValidation = () => {
+  enableValidation(){
     this._toggleButtonState();
     this._setEventListeners();
   };
@@ -93,7 +93,6 @@ _setEventListeners(){
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-
     this._toggleButtonState();
   }
 

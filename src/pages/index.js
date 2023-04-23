@@ -6,7 +6,6 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithConfirm from "../components/PopupWithConfirm";
 import UserInfo from "../components/UserInfo.js";
 import {object} from '../utils/constants.js';
 
@@ -28,7 +27,10 @@ const userInfo = new UserInfo({
 
 const popupOpenEdit = new PopupWithForm(popupProfileEdit, (data) => {
   return api.saveDataInfo(data)
-    .then((result) => userInfo.setUserInfo({ name: result.name, job: result.about }))
+    .then((result) => {
+      userInfo.setUserInfo({ name: result.name, job: result.about });
+      popupOpenEdit.close()
+    })
     .catch((err) => console.log(err))
     .finally(() => {
       popupOpenEdit.close();
@@ -41,15 +43,17 @@ profileEdit.addEventListener("click", () => {
   popupOpenEdit.open();
   const userInfoGet = userInfo.getUserInfo();
   popupOpenEdit.setInputValues(userInfoGet);
+  validPopupEditForm.resetValidation()
 });
 
 // -------------------------------------------------------------------------------------------- POPUP УДАЛЕНИЯ КАРТОЧКИ
 const popupDelCard = document.querySelector('.popup_del-card'),
-      popupConfirm = new PopupWithConfirm(popupDelCard);
-
-//popup подтверждения удаления карточки
-popupConfirm.setEventListeners();
-
+  popupConfirm = (message) => {
+    //popup подтверждения удаления карточки
+    const sendConfirm = new PopupWithForm(popupDelCard , message);
+    sendConfirm.setEventListeners();
+    sendConfirm.open();
+}
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn');
@@ -59,15 +63,14 @@ function createCard(data) {
   const cards = new Card(data, '#elements__items', handleCardClick, userId,{
     handleCardDelete: () => {
       const sendCard = () => {
-        api.deleteCard(cards.cardId)
+        return api.deleteCard(cards.cardId)
           .then(() => {
             cards.deleteCard();
             popupConfirm.close();
           })
           .catch((err) => console.log(err));
-      };
-      popupConfirm.open();
-      popupConfirm.setCallbackConfirm(sendCard);
+      }
+      popupConfirm(sendCard)
     },
       handleAddLike: () => {
         api.addLike(cards.cardId)
@@ -90,11 +93,13 @@ const popupCardAdd = document.querySelector('.popup_add-card');
 //функция-обработчик
 const handleEditCard = new PopupWithForm(popupCardAdd, (data) => {
   return api.saveCardInfo(data)
-    .then((result) => createCard(result))
+    .then((result) => {
+      createCard(result)
+      handleEditCard.close();
+    })
     .catch((err) => console.log(err))
     .finally(() => {
       handleEditCard.close();
-      validPopupCardForm.resetValidation();
     });
 
 });
@@ -102,7 +107,10 @@ handleEditCard.setEventListeners();
 // для отладки https://source.unsplash.com/collection/220381/
 
 // слушаем события
-formCardEdit.addEventListener("click", () => handleEditCard.open());
+formCardEdit.addEventListener("click", () => {
+  handleEditCard.open()
+  validPopupCardForm.resetValidation()
+});
 
 // --------------------------------------------------------------------------------------------ГЕНЕРАЦИЯ ELEMENTS из TEMPLATE
 const cardUlList = document.querySelector(".elements__grids");
@@ -160,7 +168,7 @@ const popupUpdAvatar = document.querySelector('.popup_upd-avatar'),
 
 const validPopupEditForm = new FormValidator(object, popupProfileEdit);
 validPopupEditForm.enableValidation();
-validPopupEditForm.submitFalse();
+
 
 const validPopupCardForm = new FormValidator(object, popupCardAdd);
 validPopupCardForm.enableValidation();
