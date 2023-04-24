@@ -6,6 +6,7 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import UserInfo from "../components/UserInfo.js";
 import {object} from '../utils/constants.js';
 
@@ -46,12 +47,8 @@ profileEdit.addEventListener("click", () => {
 
 // -------------------------------------------------------------------------------------------- POPUP УДАЛЕНИЯ КАРТОЧКИ
 const popupDelCard = document.querySelector('.popup_del-card'),
-  popupConfirm = (message) => {
-    //popup подтверждения удаления карточки
-    const sendConfirm = new PopupWithForm(popupDelCard , message);
-    sendConfirm.open();
-    sendConfirm.setEventListeners();
-}
+  popupConfirm = new PopupWithConfirm(popupDelCard);
+
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn');
@@ -61,13 +58,17 @@ function createCard(data) {
   const cards = new Card(data, '#elements__items', handleCardClick, userId,{
     handleCardDelete: () => {
       const sendCard = () => {
-        return api.deleteCard(cards.cardId)
+       return api.deleteCard(cards.cardId)
           .then(() => {
             cards.deleteCard();
+            popupConfirm.close();
           })
           .catch((err) => console.log(err));
       }
-      popupConfirm(sendCard)
+      popupConfirm.open();
+      popupConfirm.setCallbackConfirm(sendCard);
+      popupConfirm.setEventListeners();
+
     },
       handleAddLike: () => {
         api.addLike(cards.cardId)
