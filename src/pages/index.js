@@ -48,7 +48,7 @@ profileEdit.addEventListener("click", () => {
 // -------------------------------------------------------------------------------------------- POPUP УДАЛЕНИЯ КАРТОЧКИ
 const popupDelCard = document.querySelector('.popup_del-card'),
   popupConfirm = new PopupWithConfirm(popupDelCard);
-
+popupConfirm.setEventListeners();
 
 // -------------------------------------------------------------------------------------------- POPUP СОЗДАНИЯ НОВОЙ КАРТОЧКИ
 const formCardEdit = sectionProfile.querySelector('.profile__add-btn');
@@ -67,8 +67,6 @@ function createCard(data) {
       }
       popupConfirm.open();
       popupConfirm.setCallbackConfirm(sendCard);
-      popupConfirm.setEventListeners();
-
     },
       handleAddLike: () => {
         api.addLike(cards.cardId)
