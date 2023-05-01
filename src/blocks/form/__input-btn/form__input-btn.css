@@ -21,5 +21,6 @@
   .form__input-btn{
     font-size: 0.875rem;
     padding: 14px 0 14px;
+    width: 100%;
   }
 }
