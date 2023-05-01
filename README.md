@@ -1,6 +1,6 @@
 # 📝 Проект: Mesto
 
-### _**Проектная работа №9. Курс «Веб-разработчик» от Яндекс Практикум.**_
+### _**Проектная работа №10. Курс «Веб-разработчик» от Яндекс Практикум.**_
 
 ## ⚙️ Функционал:
 - [x] Резиновая и адаптивная вёрстка
@@ -13,7 +13,7 @@
 - [x] Popup
 - [x] Валидация всех форм
 - [x] Менять аватарку
-- [x] API
+- [x] API (Fetch)
 - [ ] Регистрация, авторизация и аутентификация
 
 ## 🛠️ Стэк:
@@ -24,8 +24,9 @@
 - FlexBox
 - CSS grid layout
 - Figma
-- JavaScript
+- JavaScript ES6
 - ООП, Классовый JS
+- [ReactJS](https://ru.legacy.reactjs.org/)
 - Git
 - Webpack
 - NPM
@@ -33,10 +34,10 @@
 * * *
 
 **🧩 Брифы:**
-* [Figma 9-го спринта](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript.-Sprint-9)
+* [Figma 10-го спринта](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript.-Sprint-9)
 
 **📄 Чеклисты:**
-* [Чеклист 9-го спринта](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-9.pdf)
+* [Чеклист 10-го спринта](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-9.pdf)
 
 **🌐 Проект на GitHub Pages:**
 * [gh-pages](https://maratdev.github.io/mesto/)
